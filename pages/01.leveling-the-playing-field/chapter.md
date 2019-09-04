@@ -14,10 +14,10 @@ The goal of this assignment is to give everyone a chance to come up to speed on 
   * The tutorial is specific to the board in the Digital Lab and so, unless you have the same board at your desk, you will at least have to go into the lab to do your download (or, you may use an FPGA board you may have access to on your desk if you like, but talk to me about it first).
   * You may use any version of Vivado you would like on any computer. Just be aware that I strongly recommend you use the version that is being used in the Digital Lab (2019.1). It is a given that every time a new version is released it fixes many bugs in the old version but inevitably introduces new bugs. You really do not want to be struggling with different versions of Vivado as you move between systems.
   * Notes on tutorial (I was running 2019.1 on an Ubuntu Linux machine):
-    * Step 3.1.3: The “Project Summary” can be found under the 'Window' menu item.
-    * Section 7:
-      * Did not source settings64.csh (not in tutorial directory).
-      * Also, did not run with -mode batch. Rather, ran with -mode tcl and then executed “source tutorial_tcl_with_sim.tcl” from within tcl command line prompt.
+	  	  * Step 3.1.3: The “Project Summary” can be found under the 'Window' menu item.
+		  * Section 7:
+				  * Did not source settings64.csh (not in tutorial directory).
+				  * Also, did not run with -mode batch. Rather, ran with -mode tcl and then executed “source tutorial_tcl_with_sim.tcl” from within tcl command line prompt.
 2. Design a UART transmitter and receiver using Vivado and either Verilog or SystemVerilog.
   * Carefully verify its correctness through simulation using a testbench you also created using either Verilog or SystemVerilog. In your writeup for this step show how you went about verifying it and convince the reader that it is correct. Make your design work for a BAUD rate of 19200 have it send 8 bits of data plus an odd parity bit. The ECEn 220 wiki (http://ecen220wiki.groups.et.byu.net/dokuwiki/doku.php?id=start) contains a lab on a UART transmitter that you may follow to help you figure out how to set up your test system using putty.
 3. Turn your results in by:
