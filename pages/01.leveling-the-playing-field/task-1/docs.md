@@ -6,4 +6,4 @@ taxonomy:
 visible: true
 ---
 
-![tmp video](user://media/smp.mp4)
+![tmp video](user://media/smp.mp4?resize=400,200)
