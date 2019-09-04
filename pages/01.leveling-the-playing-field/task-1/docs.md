@@ -6,4 +6,4 @@ taxonomy:
 visible: true
 ---
 
-Your page content goes here.
+![tmp video](media://smp.mp4)
