@@ -6,7 +6,7 @@ taxonomy:
 visible: true
 ---
 
-```V
+```verilog
 //-----------------------------------------------------
 // Design Name : encoder_using_if
 // File Name   : encoder_using_if.v
