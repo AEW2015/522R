@@ -6,7 +6,7 @@ taxonomy:
 
 ### Leveling The Playing Field
 
-<div class="class">
+<div class="class" style="text-align: right"> 
     This is <b>HTML</b>
 </div>
 
