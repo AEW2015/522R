@@ -1,5 +1,5 @@
 ---
-title: 'Assignment 1'
+title: 'task 1'
 taxonomy:
     category:
         - docs
