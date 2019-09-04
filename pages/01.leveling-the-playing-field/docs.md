@@ -1,7 +1,8 @@
 ---
 title: 'Leveling The Playing Field'
 taxonomy:
-    category: docs
+    category:
+        - docs
 ---
 
 ### Leveling The Playing Field
