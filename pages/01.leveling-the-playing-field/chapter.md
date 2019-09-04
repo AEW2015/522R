@@ -6,9 +6,6 @@ taxonomy:
 
 ### Leveling The Playing Field
 
-<div class="class" style="text-align: right"> 
-    This is <b>HTML</b>
-</div>
 
 Everyone coming into this class comes with slightly different preparation. Two students had a previous version of 620 and so are SystemVerilog and testbench experts. Four students have had 320 and so have some background with VHDL in addition to the Verilog they learned in 220. One student has had 323 and so learned SystemVerilog as an undergrad. And, some students are familiar with ISE while others know Vivado.
 
