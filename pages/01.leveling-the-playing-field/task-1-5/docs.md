@@ -14,7 +14,10 @@ It uses odd parity.
 
 The reciever core will report any errors in the parity of recieved bytes.
 
-```verilog
+
+<details><summary>Reciever_Core.v</summary>
+<p>
+<pre><code class="verilog">
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -194,7 +197,11 @@ assign bit_timer_next = (bit_timer == BIT_COUNTER_MAX_VAL) ? 0 : (bit_timer+1);
 assign pulse = (bit_timer == BIT_COUNTER_MAX_VAL) ? 1'b1 : 0;
 assign data_rx = data;
 endmodule
-```
+</code></pre>
+
+</p>
+</details>
+
 
 ```verilog
 `timescale 1ns / 1ps
