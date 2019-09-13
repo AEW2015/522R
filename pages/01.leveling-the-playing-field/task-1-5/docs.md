@@ -16,6 +16,8 @@ The reciever core will report any errors in the parity of recieved bytes.
 
 <details>
   <summary>Reciever Core Click to expand!</summary>
+    <p>
+
     
     ```verilog
     `timescale 1ns / 1ps
@@ -198,6 +200,7 @@ The reciever core will report any errors in the parity of recieved bytes.
      assign data_rx = data;
     endmodule
     ```
+   </p> 
 </details>
 
     
