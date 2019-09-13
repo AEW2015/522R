@@ -555,6 +555,8 @@ Transmitter Test Bench
 
 This Test bench also tests 50 randoms cases and verifys the design works.
 
+The design passed all the tests given.
+
 ```verilog
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
