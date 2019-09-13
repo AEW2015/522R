@@ -1286,3 +1286,6 @@ int main()
 Here is the video of its operation.
 
 ![uart video](user://media/uarty.mp4?resize=300,600))
+
+All the files and (future) build scripts will be included here:
+[Github page](https://github.com/AEW2015/522R/tree/master/pages/01.leveling-the-playing-field/task-1-5)
