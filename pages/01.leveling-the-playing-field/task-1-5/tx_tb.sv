@@ -113,7 +113,7 @@ module tx_tb;
 	data_tx = 8'h00;
 	resetDUT();
     #1000ns
-    randomTests(100);
+    randomTests(50);
 	if(testFailed == 1)
 			$display("[%0tns]ERROR:Test Failed", $time);
 		else
