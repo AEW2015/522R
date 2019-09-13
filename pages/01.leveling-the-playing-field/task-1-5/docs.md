@@ -17,6 +17,7 @@ The reciever core will report any errors in the parity of recieved bytes.
 
 <details><summary>Reciever_Core.v</summary>
 <p>
+  
 <pre><code class="verilog">
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
