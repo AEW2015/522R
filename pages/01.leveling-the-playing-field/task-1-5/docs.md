@@ -488,7 +488,7 @@ endmodule
 ```
 
 Output:
-```
+```bash
 [1015000ns]Testing 50 random commands
 [1015000ns]Testing data_rx = 24 with parity error
 [546000000ns]Testing data_rx = 24 with parity error
@@ -680,7 +680,7 @@ endmodule
 ```
 
 Output:
-```
+```bash
 [1015000ns]Testing 50 random commands
 [1015000ns]Testing data_tx = 24
 [573900000ns]Testing data_tx = 24
