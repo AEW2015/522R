@@ -14,19 +14,15 @@ It uses odd parity.
 
 The reciever core will report any errors in the parity of recieved bytes.
 
-## collapsible markdown?
+!> My section
 
-<details><summary>CLICK ME</summary>
-<p>
+### Whatever markdown you need
 
-#### yes, even hidden code blocks!
-
-```python
-print("hello world!")
-```
-
-</p>
-</details>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat quam erat, ut iaculis diam posuere nec.
+Vestibulum eu condimentum urna. Vestibulum feugiat odio ut sodales porta. Donec sit amet ante mi. Donec lobortis
+orci dolor. Donec tristique volutpat ultricies. Nullam tempus, enim sit amet fringilla facilisis, ipsum ex
+tincidunt ipsum, vel placerat sem sem vitae risus. Aenean posuere sed purus nec pretium.
+!@
 
 <details>
   <summary>Reciever Core Click to expand!</summary>
