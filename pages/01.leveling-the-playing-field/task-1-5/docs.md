@@ -14,20 +14,6 @@ It uses odd parity.
 
 The reciever core will report any errors in the parity of recieved bytes.
 
-!> My section
-
-### Whatever markdown you need
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat quam erat, ut iaculis diam posuere nec.
-Vestibulum eu condimentum urna. Vestibulum feugiat odio ut sodales porta. Donec sit amet ante mi. Donec lobortis
-orci dolor. Donec tristique volutpat ultricies. Nullam tempus, enim sit amet fringilla facilisis, ipsum ex
-tincidunt ipsum, vel placerat sem sem vitae risus. Aenean posuere sed purus nec pretium.
-!@
-
-<details>
-  <summary>Reciever Core Click to expand!</summary>
-    <p>
-
 ```verilog
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
@@ -209,10 +195,7 @@ assign pulse = (bit_timer == BIT_COUNTER_MAX_VAL) ? 1'b1 : 0;
 assign data_rx = data;
 endmodule
 ```
-   </p> 
-</details>
 
-    
 ```verilog
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
