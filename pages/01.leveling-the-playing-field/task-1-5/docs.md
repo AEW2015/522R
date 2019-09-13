@@ -379,8 +379,9 @@ The design passed all the tests given.
 
 <details><summary>rx_tb.v</summary>
 <p>
-  
-<pre><code class="verilog">
+This works?
+<pre>           
+<code class="verilog">
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -508,7 +509,9 @@ module rx_tb;
 
 
 endmodule
-</code></pre>
+</code>
+</pre>                
+this works?
 </p>
 </details>
 
