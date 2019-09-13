@@ -14,6 +14,7 @@ It uses odd parity.
 
 The reciever core will report any errors in the parity of recieved bytes.
 
+<div><object data="rx_tb.sv"></object></div>
 
 <details><summary>Reciever_Core.v</summary>
 <p>
