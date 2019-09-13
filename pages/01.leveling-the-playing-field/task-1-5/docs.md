@@ -360,6 +360,9 @@ Reciever Test Bench
 
 This test bench tests 50 random cases with some including parity errors.
 
+The design passed all the tests given.
+
+
 ```verilog
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
