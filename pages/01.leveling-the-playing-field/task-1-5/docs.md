@@ -204,7 +204,10 @@ endmodule
 </details>
 
 
-```verilog
+<details><summary>transmitter_core.v</summary>
+<p>
+  
+<pre><code class="verilog">
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -362,7 +365,10 @@ assign tx_reg_next = (stop==1'b1) ? 1'b1 : (start==1'b1) ? 1'b0 : (parity_bit ==
 assign tx = tx_reg;
 
 endmodule
-```
+</code></pre>
+
+</p>
+</details>
 
 Reciever Test Bench
 
@@ -371,7 +377,10 @@ This test bench tests 50 random cases with some including parity errors.
 The design passed all the tests given.
 
 
-```verilog
+<details><summary>rx_tb.v</summary>
+<p>
+  
+<pre><code class="verilog">
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -499,10 +508,15 @@ module rx_tb;
 
 
 endmodule
-```
+</code></pre>
 
-Output:
-```bash
+</p>
+</details>
+
+<details><summary>Output:</summary>
+<p>
+  
+<pre><code class="bash">
 [1015000ns]Testing 50 random commands
 [1015000ns]Testing data_rx = 24 with parity error
 [546000000ns]Testing data_rx = 24 with parity error
@@ -557,7 +571,10 @@ Output:
 [27300000000ns]50/50 Passed
 [27300000000ns]Test Passed
 $finish called at time : 27300 us : File "C:/xup/R522/arty_ublaze/arty_ublaze.srcs/sim_1/new/rx_tb.sv" Line 122
-```
+</code></pre>
+
+</p>
+</details>
 
 Transmitter Test Bench
 
@@ -565,7 +582,10 @@ This Test bench also tests 50 randoms cases and verifys the design works.
 
 The design passed all the tests given.
 
-```verilog
+<details><summary>tx_tb.sv</summary>
+<p>
+  
+<pre><code class="verilog">
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -692,11 +712,16 @@ module tx_tb;
 
 
 endmodule
+</code></pre>
 
-```
+</p>
+</details>
 
-Output:
-```bash
+
+<details><summary>Output:</summary>
+<p>
+  
+<pre><code class="bash">
 [1015000ns]Testing 50 random commands
 [1015000ns]Testing data_tx = 24
 [573900000ns]Testing data_tx = 24
@@ -751,13 +776,19 @@ Output:
 [28645510000ns]50/50 Passed
 [28645510000ns]Test Passed
 $finish called at time : 28645510 ns : File "C:/xup/R522/arty_ublaze/arty_ublaze.srcs/sim_1/new/tx_tb.sv" Line 121
-```
+</code></pre>
+
+</p>
+</details>
 
 This is the verilog file that connects the uart to the axi lite bus.
 
 Fifos were included to buffer multiple data bytes.
 
-```verilog
+<details><summary>myUart_v1_0_S00_AXI.v</summary>
+<p>
+  
+<pre><code class="verilog">
 
 `timescale 1 ns / 1 ps
 
@@ -1228,8 +1259,10 @@ Fifos were included to buffer multiple data bytes.
 	// User logic ends
 
 	endmodule
+</code></pre>
 
-```
+</p>
+</details>
 
 This is the block diagram of connecting myUart to the Microblaze.
 
@@ -1241,7 +1274,10 @@ These are the addresses I assigned to all the perpherials.
 
 Here is the c code:
 
-```c
+<details><summary>code.c</summary>
+<p>
+  
+<pre><code class="c">
 #include <stdio.h>
 #include "platform.h"
 #include "xil_printf.h"
@@ -1300,7 +1336,10 @@ int main()
     cleanup_platform();
     return 0;
 }
-```
+</code></pre>
+
+</p>
+</details>
 
 
 Here is the video of its operation.
