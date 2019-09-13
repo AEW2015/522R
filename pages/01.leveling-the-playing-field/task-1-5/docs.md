@@ -14,9 +14,7 @@ It uses odd parity.
 
 The reciever core will report any errors in the parity of recieved bytes.
 
-<details><summary>Reciever_Core.v</summary>
-<p>
-  
+<details><summary>Reciever_Core.v</summary><p> 
 <pre><code class="verilog">
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
@@ -39,163 +37,161 @@ The reciever core will report any errors in the parity of recieved bytes.
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-
 module Reciever_Core(
 
-input  wire clk,
-input  wire rst_n,
-input  wire rx,
-output reg rec_data,
-output reg err_data,
-output reg rx_busy,
-output wire[7:0] data_rx
-);
-
-function integer clog2;
-input integer value;
-begin
-value = value-1;
-for (clog2=0; value>0; clog2=clog2+1)
-value = value>>1;
-end
-endfunction
-
-parameter CLK_RATE   = 100_000_000;
-parameter BAUD_RATE  = 19200;
-
-localparam BIT_COUNTER_MAX_VAL = CLK_RATE/BAUD_RATE/16 - 1;
-localparam BIT_COUNTER_BITS = clog2(BIT_COUNTER_MAX_VAL);
-
-parameter POWERUP  = 3'b000;    
-parameter IDLE     = 3'b001;    
-parameter STRT     = 3'b010;    
-parameter DATAREAD = 3'b011;    
-parameter PARITY   = 3'b100;   
-parameter STP      = 3'b101;
-
-reg [2:0] state,state_next;
-reg [BIT_COUNTER_BITS-1:0] bit_timer;
-wire [BIT_COUNTER_BITS-1:0] bit_timer_next;
-reg [7:0] data,data_next;
-reg [3:0] stime,stime_next;
-reg [2:0] dtime,dtime_next;
-
-reg parity_reg;
-reg parity_reg_next;
-wire pulse;
-
-always @ (posedge clk, negedge rst_n)
-begin
-    if (rst_n==1'b0) 
+    input  wire clk,
+    input  wire rst_n,
+    input  wire rx,
+    output reg rec_data,
+    output reg err_data,
+    output reg rx_busy,
+    output wire[7:0] data_rx
+    );
+    
+    function integer clog2;
+    input integer value;
     begin
-        state <= POWERUP;
-        data <= 0;
-        stime <= 0;
-        dtime <= 0;
-        bit_timer <= 0;
-        parity_reg <= 0;
+    value = value-1;
+    for (clog2=0; value&gt;0; clog2=clog2+1)
+    value = value&gt;&gt;1;
     end
-    else if (clk==1'b1) 
+    endfunction
+    
+    parameter CLK_RATE   = 100_000_000;
+    parameter BAUD_RATE  = 19200;
+    
+    localparam BIT_COUNTER_MAX_VAL = CLK_RATE/BAUD_RATE/16 - 1;
+    localparam BIT_COUNTER_BITS = clog2(BIT_COUNTER_MAX_VAL);
+    
+    parameter POWERUP  = 3'b000;    
+    parameter IDLE     = 3'b001;    
+    parameter STRT     = 3'b010;    
+    parameter DATAREAD = 3'b011;    
+    parameter PARITY   = 3'b100;   
+    parameter STP      = 3'b101;
+    
+    reg [2:0] state,state_next;
+    reg [BIT_COUNTER_BITS-1:0] bit_timer;
+    wire [BIT_COUNTER_BITS-1:0] bit_timer_next;
+    reg [7:0] data,data_next;
+    reg [3:0] stime,stime_next;
+    reg [2:0] dtime,dtime_next;
+        
+    reg parity_reg;
+    reg parity_reg_next;
+    wire pulse;
+    
+    always @ (posedge clk, negedge rst_n)
     begin
-        state <=state_next;
-        data <= data_next;
-        stime <= stime_next;
-        dtime <= dtime_next;
-        bit_timer <= bit_timer_next;
-        parity_reg <= parity_reg_next;
+        if (rst_n==1'b0) 
+        begin
+            state &lt;= POWERUP;
+            data &lt;= 0;
+            stime &lt;= 0;
+            dtime &lt;= 0;
+            bit_timer &lt;= 0;
+            parity_reg &lt;= 0;
+        end
+        else if (clk==1'b1) 
+        begin
+            state &lt;=state_next;
+            data &lt;= data_next;
+            stime &lt;= stime_next;
+            dtime &lt;= dtime_next;
+            bit_timer &lt;= bit_timer_next;
+            parity_reg &lt;= parity_reg_next;
+        end
     end
-end
-
-always @ (state,pulse,stime,dtime,data,rx,parity_reg)
-begin
-    rx_busy = 1'b1;
-    rec_data = 1'b0;
-    err_data = 1'b0;
-    state_next = state;
-    stime_next = stime;
-    dtime_next = dtime;
-    data_next = data;
-    parity_reg_next = parity_reg;
-    case(state)
-        POWERUP:
-            if (rx==1'b1)
-                state_next = IDLE;
-        IDLE: begin
-            rx_busy = 0;
-            if( rx==1'b0)
-                state_next = STRT;  
-        end
-        STRT: begin
-            if (pulse == 1'b1)
-                if (stime == 4'b0111)
-                begin
-                    stime_next = 0;
-                    dtime_next = 0;
-                    parity_reg_next = 1'b1;
-                    state_next = DATAREAD;
-                end
-                else
-                    stime_next = stime + 1;
-        end
-        DATAREAD : begin
-            if (pulse == 1'b1)
-                if (stime == 4'b1111)
-                begin
-                    stime_next = 0;
-                    data_next = {rx,data[7:1]};
-                    parity_reg_next = parity_reg ^ rx;
-                    if (dtime == 3'b111)
+    
+    always @ (state,pulse,stime,dtime,data,rx,parity_reg)
+    begin
+        rx_busy = 1'b1;
+        rec_data = 1'b0;
+        err_data = 1'b0;
+        state_next = state;
+        stime_next = stime;
+        dtime_next = dtime;
+        data_next = data;
+        parity_reg_next = parity_reg;
+        case(state)
+            POWERUP:
+                if (rx==1'b1)
+                    state_next = IDLE;
+            IDLE: begin
+                rx_busy = 0;
+                if( rx==1'b0)
+                    state_next = STRT;  
+            end
+            STRT: begin
+                if (pulse == 1'b1)
+                    if (stime == 4'b0111)
                     begin
+                        stime_next = 0;
                         dtime_next = 0;
-                        state_next = PARITY;
+                        parity_reg_next = 1'b1;
+                        state_next = DATAREAD;
                     end
                     else
-                        dtime_next = dtime + 1;
-                end
-                else
-                    stime_next = stime + 1;
-        end
-        PARITY: begin
-           if (pulse == 1'b1)
-             if (stime == 4'b1111)
-             begin
-                 stime_next = 0;
-                 parity_reg_next = parity_reg ^ rx;
-                 state_next = STP;
-
-             end
-             else
-                 stime_next = stime + 1;
-        end
-        STP: begin
-           if (pulse == 1'b1)
-             if (stime == 4'b1111)
-             begin
-                 stime_next = 0;
-                 if (rx == 1'b1) 
+                        stime_next = stime + 1;
+            end
+            DATAREAD : begin
+                if (pulse == 1'b1)
+                    if (stime == 4'b1111)
+                    begin
+                        stime_next = 0;
+                        data_next = {rx,data[7:1]};
+                        parity_reg_next = parity_reg ^ rx;
+                        if (dtime == 3'b111)
+                        begin
+                            dtime_next = 0;
+                            state_next = PARITY;
+                        end
+                        else
+                            dtime_next = dtime + 1;
+                    end
+                    else
+                        stime_next = stime + 1;
+            end
+            PARITY: begin
+               if (pulse == 1'b1)
+                 if (stime == 4'b1111)
                  begin
-                    rec_data = !parity_reg;
-                    err_data = parity_reg;
-                    state_next = IDLE;
+                     stime_next = 0;
+                     parity_reg_next = parity_reg ^ rx;
+                     state_next = STP;
+                   
                  end
                  else
+                     stime_next = stime + 1;
+            end
+            STP: begin
+               if (pulse == 1'b1)
+                 if (stime == 4'b1111)
                  begin
-                    err_data = 1'b1;
-                    state_next = IDLE;
+                     stime_next = 0;
+                     if (rx == 1'b1) 
+                     begin
+                        rec_data = !parity_reg;
+                        err_data = parity_reg;
+                        state_next = IDLE;
+                     end
+                     else
+                     begin
+                        err_data = 1'b1;
+                        state_next = IDLE;
+                     end
                  end
-             end
-             else
-                 stime_next = stime + 1;
-        end
-        default: state_next = POWERUP;
-
-    endcase
-end
-
-assign bit_timer_next = (bit_timer == BIT_COUNTER_MAX_VAL) ? 0 : (bit_timer+1);
-assign pulse = (bit_timer == BIT_COUNTER_MAX_VAL) ? 1'b1 : 0;
-assign data_rx = data;
+                 else
+                     stime_next = stime + 1;
+            end
+            default: state_next = POWERUP;
+    
+        endcase
+    end
+    
+ assign bit_timer_next = (bit_timer == BIT_COUNTER_MAX_VAL) ? 0 : (bit_timer+1);
+ assign pulse = (bit_timer == BIT_COUNTER_MAX_VAL) ? 1'b1 : 0;
+ assign data_rx = data;
 endmodule
 </code></pre>
 
@@ -241,8 +237,8 @@ module transmitter_core(
     input integer value;
     begin
     value = value-1;
-    for (clog2=0; value>0; clog2=clog2+1)
-    value = value>>1;
+    for (clog2=0; value&gt;0; clog2=clog2+1)
+    value = value&gt;&gt;1;
     end
     endfunction
     
@@ -278,21 +274,21 @@ module transmitter_core(
     begin
         if (rst_n==1'b0) 
         begin
-            state <= IDLE;
-            data <= 0;
-            dtime <= 0;
-            bit_timer <= 0;
-            tx_reg   <= 1'b1;
-            parity_reg   <= 1'b0;
+            state &lt;= IDLE;
+            data &lt;= 0;
+            dtime &lt;= 0;
+            bit_timer &lt;= 0;
+            tx_reg   &lt;= 1'b1;
+            parity_reg   &lt;= 1'b0;
         end
         else if (clk==1'b1) 
         begin
-            state <=state_next;
-            data <= data_next;
-            dtime <= dtime_next;
-            bit_timer <= bit_timer_next;
-            tx_reg <= tx_reg_next;
-            parity_reg <= parity_reg_next;
+            state &lt;=state_next;
+            data &lt;= data_next;
+            dtime &lt;= dtime_next;
+            bit_timer &lt;= bit_timer_next;
+            tx_reg &lt;= tx_reg_next;
+            parity_reg &lt;= parity_reg_next;
         end
     end 
     
@@ -378,7 +374,6 @@ The design passed all the tests given.
 
 <details><summary>rx_tb.v</summary>
 <p>
-This works?
 <pre>           
 <code class="verilog">
 `timescale 1ns / 1ps
@@ -471,7 +466,7 @@ module rx_tb;
 	task randomTests (int num);
 		numTaskFailed = 0;
 		$display("[%0tns]Testing %0d random commands", $time, num);
-		for (k=0; k<num; k=k+1) 
+		for (k=0; k&lt;num; k=k+1) 
 		begin
 			taskFailed = 0;
 			test_byte($urandom,$urandom);
@@ -487,8 +482,8 @@ module rx_tb;
 
     always  
 	begin
-		clk <=1; #5ns;
-		clk <=0; #5ns;
+		clk &lt;=1; #5ns;
+		clk &lt;=0; #5ns;
 	end
 
 	initial
@@ -509,12 +504,10 @@ module rx_tb;
 
 endmodule
 </code>
-</pre>                
-this works?
+</pre>
 </p>
 </details>
 
-Test 
 
 <details><summary>Output:</summary>
 <p>
@@ -677,7 +670,7 @@ module tx_tb;
 	task randomTests (int num);
 		numTaskFailed = 0;
 		$display("[%0tns]Testing %0d random commands", $time, num);
-		for (k=0; k<num; k=k+1) 
+		for (k=0; k&lt;num; k=k+1) 
 		begin
 			taskFailed = 0;
 			test_byte($urandom);
@@ -693,8 +686,8 @@ module tx_tb;
 
     always  
 	begin
-		clk <=1; #5ns;
-		clk <=0; #5ns;
+		clk &lt;=1; #5ns;
+		clk &lt;=0; #5ns;
 	end
 
 	initial
@@ -792,7 +785,6 @@ Fifos were included to buffer multiple data bytes.
 <p>
   
 <pre><code class="verilog">
-
 `timescale 1 ns / 1 ps
 
 	module myUart_v1_0_S00_AXI #
@@ -954,28 +946,28 @@ Fifos were included to buffer multiple data bytes.
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
-	      axi_awready <= 1'b0;
-	      aw_en <= 1'b1;
+	      axi_awready &lt;= 1'b0;
+	      aw_en &lt;= 1'b1;
 	    end 
 	  else
 	    begin    
-	      if (~axi_awready && S_AXI_AWVALID && S_AXI_WVALID && aw_en)
+	      if (~axi_awready &amp;&amp; S_AXI_AWVALID &amp;&amp; S_AXI_WVALID &amp;&amp; aw_en)
 	        begin
 	          // slave is ready to accept write address when 
 	          // there is a valid write address and write data
 	          // on the write address and data bus. This design 
 	          // expects no outstanding transactions. 
-	          axi_awready <= 1'b1;
-	          aw_en <= 1'b0;
+	          axi_awready &lt;= 1'b1;
+	          aw_en &lt;= 1'b0;
 	        end
-	        else if (S_AXI_BREADY && axi_bvalid)
+	        else if (S_AXI_BREADY &amp;&amp; axi_bvalid)
 	            begin
-	              aw_en <= 1'b1;
-	              axi_awready <= 1'b0;
+	              aw_en &lt;= 1'b1;
+	              axi_awready &lt;= 1'b0;
 	            end
 	      else           
 	        begin
-	          axi_awready <= 1'b0;
+	          axi_awready &lt;= 1'b0;
 	        end
 	    end 
 	end       
@@ -988,14 +980,14 @@ Fifos were included to buffer multiple data bytes.
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
-	      axi_awaddr <= 0;
+	      axi_awaddr &lt;= 0;
 	    end 
 	  else
 	    begin    
-	      if (~axi_awready && S_AXI_AWVALID && S_AXI_WVALID && aw_en)
+	      if (~axi_awready &amp;&amp; S_AXI_AWVALID &amp;&amp; S_AXI_WVALID &amp;&amp; aw_en)
 	        begin
 	          // Write Address latching 
-	          axi_awaddr <= S_AXI_AWADDR;
+	          axi_awaddr &lt;= S_AXI_AWADDR;
 	        end
 	    end 
 	end       
@@ -1009,21 +1001,21 @@ Fifos were included to buffer multiple data bytes.
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
-	      axi_wready <= 1'b0;
+	      axi_wready &lt;= 1'b0;
 	    end 
 	  else
 	    begin    
-	      if (~axi_wready && S_AXI_WVALID && S_AXI_AWVALID && aw_en )
+	      if (~axi_wready &amp;&amp; S_AXI_WVALID &amp;&amp; S_AXI_AWVALID &amp;&amp; aw_en )
 	        begin
 	          // slave is ready to accept write data when 
 	          // there is a valid write address and write data
 	          // on the write address and data bus. This design 
 	          // expects no outstanding transactions. 
-	          axi_wready <= 1'b1;
+	          axi_wready &lt;= 1'b1;
 	        end
 	      else
 	        begin
-	          axi_wready <= 1'b0;
+	          axi_wready &lt;= 1'b0;
 	        end
 	    end 
 	end       
@@ -1035,54 +1027,54 @@ Fifos were included to buffer multiple data bytes.
 	// These registers are cleared when reset (active low) is applied.
 	// Slave register write enable is asserted when valid address and data are available
 	// and the slave is ready to accept the write address and write data.
-	assign slv_reg_wren = axi_wready && S_AXI_WVALID && axi_awready && S_AXI_AWVALID;
+	assign slv_reg_wren = axi_wready &amp;&amp; S_AXI_WVALID &amp;&amp; axi_awready &amp;&amp; S_AXI_AWVALID;
 
 	always @( posedge S_AXI_ACLK )
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
-	      slv_reg0 <= 0;
-	      slv_reg1 <= 0;
-	      slv_reg2 <= 0;
-	      slv_reg3 <= 0;
+	      slv_reg0 &lt;= 0;
+	      slv_reg1 &lt;= 0;
+	      slv_reg2 &lt;= 0;
+	      slv_reg3 &lt;= 0;
 	    end 
 	  else begin
 	    if (slv_reg_wren)
 	      begin
 	        case ( axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
 	          2'h0:
-	            for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
+	            for ( byte_index = 0; byte_index &lt;= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
 	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin
 	                // Respective byte enables are asserted as per write strobes 
 	                // Slave register 0
-	                slv_reg0[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
+	                slv_reg0[(byte_index*8) +: 8] &lt;= S_AXI_WDATA[(byte_index*8) +: 8];
 	              end  
 	          2'h1:
-	            for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
+	            for ( byte_index = 0; byte_index &lt;= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
 	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin
 	                // Respective byte enables are asserted as per write strobes 
 	                // Slave register 1
-	                slv_reg1[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
+	                slv_reg1[(byte_index*8) +: 8] &lt;= S_AXI_WDATA[(byte_index*8) +: 8];
 	              end  
 	          2'h2:
-	            for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
+	            for ( byte_index = 0; byte_index &lt;= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
 	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin
 	                // Respective byte enables are asserted as per write strobes 
 	                // Slave register 2
-	                slv_reg2[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
+	                slv_reg2[(byte_index*8) +: 8] &lt;= S_AXI_WDATA[(byte_index*8) +: 8];
 	              end  
 	          2'h3:
-	            for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
+	            for ( byte_index = 0; byte_index &lt;= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
 	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin
 	                // Respective byte enables are asserted as per write strobes 
 	                // Slave register 3
-	                slv_reg3[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
+	                slv_reg3[(byte_index*8) +: 8] &lt;= S_AXI_WDATA[(byte_index*8) +: 8];
 	              end  
 	          default : begin
-	                      slv_reg0 <= slv_reg0;
-	                      slv_reg1 <= slv_reg1;
-	                      slv_reg2 <= slv_reg2;
-	                      slv_reg3 <= slv_reg3;
+	                      slv_reg0 &lt;= slv_reg0;
+	                      slv_reg1 &lt;= slv_reg1;
+	                      slv_reg2 &lt;= slv_reg2;
+	                      slv_reg3 &lt;= slv_reg3;
 	                    end
 	        endcase
 	      end
@@ -1099,24 +1091,24 @@ Fifos were included to buffer multiple data bytes.
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
-	      axi_bvalid  <= 0;
-	      axi_bresp   <= 2'b0;
+	      axi_bvalid  &lt;= 0;
+	      axi_bresp   &lt;= 2'b0;
 	    end 
 	  else
 	    begin    
-	      if (axi_awready && S_AXI_AWVALID && ~axi_bvalid && axi_wready && S_AXI_WVALID)
+	      if (axi_awready &amp;&amp; S_AXI_AWVALID &amp;&amp; ~axi_bvalid &amp;&amp; axi_wready &amp;&amp; S_AXI_WVALID)
 	        begin
 	          // indicates a valid write response is available
-	          axi_bvalid <= 1'b1;
-	          axi_bresp  <= 2'b0; // 'OKAY' response 
+	          axi_bvalid &lt;= 1'b1;
+	          axi_bresp  &lt;= 2'b0; // 'OKAY' response 
 	        end                   // work error responses in future
 	      else
 	        begin
-	          if (S_AXI_BREADY && axi_bvalid) 
+	          if (S_AXI_BREADY &amp;&amp; axi_bvalid) 
 	            //check if bready is asserted while bvalid is high) 
 	            //(there is a possibility that bready is always asserted high)   
 	            begin
-	              axi_bvalid <= 1'b0; 
+	              axi_bvalid &lt;= 1'b0; 
 	            end  
 	        end
 	    end
@@ -1133,21 +1125,21 @@ Fifos were included to buffer multiple data bytes.
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
-	      axi_arready <= 1'b0;
-	      axi_araddr  <= 32'b0;
+	      axi_arready &lt;= 1'b0;
+	      axi_araddr  &lt;= 32'b0;
 	    end 
 	  else
 	    begin    
-	      if (~axi_arready && S_AXI_ARVALID)
+	      if (~axi_arready &amp;&amp; S_AXI_ARVALID)
 	        begin
 	          // indicates that the slave has acceped the valid read address
-	          axi_arready <= 1'b1;
+	          axi_arready &lt;= 1'b1;
 	          // Read address latching
-	          axi_araddr  <= S_AXI_ARADDR;
+	          axi_araddr  &lt;= S_AXI_ARADDR;
 	        end
 	      else
 	        begin
-	          axi_arready <= 1'b0;
+	          axi_arready &lt;= 1'b0;
 	        end
 	    end 
 	end       
@@ -1164,21 +1156,21 @@ Fifos were included to buffer multiple data bytes.
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
-	      axi_rvalid <= 0;
-	      axi_rresp  <= 0;
+	      axi_rvalid &lt;= 0;
+	      axi_rresp  &lt;= 0;
 	    end 
 	  else
 	    begin    
-	      if (axi_arready && S_AXI_ARVALID && ~axi_rvalid)
+	      if (axi_arready &amp;&amp; S_AXI_ARVALID &amp;&amp; ~axi_rvalid)
 	        begin
 	          // Valid read data is available at the read data bus
-	          axi_rvalid <= 1'b1;
-	          axi_rresp  <= 2'b0; // 'OKAY' response
+	          axi_rvalid &lt;= 1'b1;
+	          axi_rresp  &lt;= 2'b0; // 'OKAY' response
 	        end   
-	      else if (axi_rvalid && S_AXI_RREADY)
+	      else if (axi_rvalid &amp;&amp; S_AXI_RREADY)
 	        begin
 	          // Read data is accepted by the master
-	          axi_rvalid <= 1'b0;
+	          axi_rvalid &lt;= 1'b0;
 	        end                
 	    end
 	end    
@@ -1186,7 +1178,7 @@ Fifos were included to buffer multiple data bytes.
 	// Implement memory mapped register select and read logic generation
 	// Slave register read enable is asserted when valid address is available
 	// and the slave is ready to accept the read address.
-	assign slv_reg_rden = axi_arready & S_AXI_ARVALID & ~axi_rvalid;
+	assign slv_reg_rden = axi_arready &amp; S_AXI_ARVALID &amp; ~axi_rvalid;
 	always @(*)
 	begin
 	      // Address decoding for reading registers
@@ -1204,7 +1196,7 @@ Fifos were included to buffer multiple data bytes.
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
-	      axi_rdata  <= 0;
+	      axi_rdata  &lt;= 0;
 	    end 
 	  else
 	    begin    
@@ -1213,7 +1205,7 @@ Fifos were included to buffer multiple data bytes.
 	      // output the read dada 
 	      if (slv_reg_rden)
 	        begin
-	          axi_rdata <= reg_data_out;     // register read data
+	          axi_rdata &lt;= reg_data_out;     // register read data
 	        end   
 	    end
 	end    
@@ -1223,9 +1215,9 @@ Fifos were included to buffer multiple data bytes.
     Reciever_Core(S_AXI_ACLK,S_AXI_ARESETN,m_rxd,rec_data,err_data,rx_busy,data_rx);
     transmitter_core(S_AXI_ACLK,S_AXI_ARESETN,send_data,data_tx,m_txd,tx_busy);
 	
-	assign send_data = ! tx_fifo_empty && ! tx_busy;
-	assign tx_fifo_rd = ! tx_fifo_empty && ! tx_busy;
-	assign tx_fifo_wr = (slv_reg_wren && axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 2'h1) ? 1 : 0;
+	assign send_data = ! tx_fifo_empty &amp;&amp; ! tx_busy;
+	assign tx_fifo_rd = ! tx_fifo_empty &amp;&amp; ! tx_busy;
+	assign tx_fifo_wr = (slv_reg_wren &amp;&amp; axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 2'h1) ? 1 : 0;
 	
 	fifo_generator_0 tx_fifo (
       .clk(S_AXI_ACLK),      // input wire clk
@@ -1237,7 +1229,7 @@ Fifos were included to buffer multiple data bytes.
       .empty(tx_fifo_empty)  // output wire empty
     );
     
-    assign rx_fifo_rd = (slv_reg_rden && axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 2'h2) ? 1 : 0;
+    assign rx_fifo_rd = (slv_reg_rden &amp;&amp; axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 2'h2) ? 1 : 0;
     
     fifo_generator_0 rx_fifo (
       .clk(S_AXI_ACLK),      // input wire clk
@@ -1253,9 +1245,9 @@ Fifos were included to buffer multiple data bytes.
 	always @( posedge S_AXI_ACLK )
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
-        error_counter <= 0;
+        error_counter &lt;= 0;
 	  else
-       error_counter <= error_counter_next;
+       error_counter &lt;= error_counter_next;
 	end     
 	
 	assign error_counter_next = (err_data==1'b1) ? error_counter+1 : error_counter;
@@ -1281,7 +1273,7 @@ Here is the c code:
 <p>
   
 <pre><code class="c">
-#include <stdio.h>
+#include &lt;stdio.h&gt;
 #include "platform.h"
 #include "xil_printf.h"
 #include "xil_io.h"
@@ -1314,9 +1306,9 @@ int main()
 
 
 
-    	if((0x1&dip_swi)==0){
+    	if((0x1&amp;dip_swi)==0){
     		Xil_Out32(0x11100000,0x1);
-    	if(0x100&input){
+    	if(0x100&amp;input){
     		uart_counter++;
     		Xil_Out32(0x44a00004,0x0A);;
     		Xil_Out32(0x44a00004,0x7E);
@@ -1328,7 +1320,7 @@ int main()
     	{
     		Xil_Out32(0x11100000,0x2);
     		Xil_Out32(0x44a00004,send_byte++);
-    		for( int i = 0; i<0xFFFFF;i++);
+    		for( int i = 0; i&lt;0xFFFFF;i++);
     	}
 
 
