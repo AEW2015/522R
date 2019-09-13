@@ -6,4 +6,6 @@ taxonomy:
 visible: true
 ---
 
-![tmp video](user://media/smp.mp4?resize=300,600&autoplay=1))
+![uart video](user://media/uarty.mp4?resize=300,600&autoplay=1))
+
+
