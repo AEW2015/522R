@@ -1227,6 +1227,10 @@ This is the block diagram of connecting myUart to the Microblaze.
 
 ![block diagram](ublaze_uart.JPG)
 
+These are the addresses I assigned to all the perpherials.
+
+![Addresses](addresses.JPG)
+
 Here is the c code:
 
 ```c
