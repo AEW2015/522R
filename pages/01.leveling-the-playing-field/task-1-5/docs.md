@@ -6,9 +6,12 @@ taxonomy:
 visible: true
 ---
 
-Here is my uart for tasks 1-5
+Here is my uart for tasks 1-5.
+
 This uart has configurable clock rate and baud rate.
+
 It uses odd parity.
+
 The reciever core will report any errors in the parity of recieved bytes.
 
 ```verilog
