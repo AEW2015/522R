@@ -61,6 +61,7 @@ module Reciever_Core(
     reg [3:0] stime,stime_next;
     reg [2:0] dtime,dtime_next;
         
+    reg rx_reg;
     reg parity_reg;
     reg parity_reg_next;
     wire pulse;
@@ -75,6 +76,7 @@ module Reciever_Core(
             dtime <= 0;
             bit_timer <= 0;
             parity_reg <= 0;
+            rx_reg <= 0;
         end
         else if (clk==1'b1) 
         begin
@@ -84,10 +86,11 @@ module Reciever_Core(
             dtime <= dtime_next;
             bit_timer <= bit_timer_next;
             parity_reg <= parity_reg_next;
+            rx_reg <= rx;
         end
     end
     
-    always @ (state,pulse,stime,dtime,data,rx,parity_reg)
+    always @ (state,pulse,stime,dtime,data,rx_reg,parity_reg)
     begin
         rx_busy = 1'b1;
         rec_data = 1'b0;
@@ -99,11 +102,11 @@ module Reciever_Core(
         parity_reg_next = parity_reg;
         case(state)
             POWERUP:
-                if (rx==1'b1)
+                if (rx_reg==1'b1)
                     state_next = IDLE;
             IDLE: begin
                 rx_busy = 0;
-                if( rx==1'b0)
+                if( rx_reg==1'b0)
                     state_next = STRT;  
             end
             STRT: begin
@@ -123,8 +126,8 @@ module Reciever_Core(
                     if (stime == 4'b1111)
                     begin
                         stime_next = 0;
-                        data_next = {rx,data[7:1]};
-                        parity_reg_next = parity_reg ^ rx;
+                        data_next = {rx_reg,data[7:1]};
+                        parity_reg_next = parity_reg ^ rx_reg;
                         if (dtime == 3'b111)
                         begin
                             dtime_next = 0;
@@ -141,7 +144,7 @@ module Reciever_Core(
                  if (stime == 4'b1111)
                  begin
                      stime_next = 0;
-                     parity_reg_next = parity_reg ^ rx;
+                     parity_reg_next = parity_reg ^ rx_reg;
                      state_next = STP;
                    
                  end
@@ -153,7 +156,7 @@ module Reciever_Core(
                  if (stime == 4'b1111)
                  begin
                      stime_next = 0;
-                     if (rx == 1'b1) 
+                     if (rx_reg == 1'b1) 
                      begin
                         rec_data = !parity_reg;
                         err_data = parity_reg;
