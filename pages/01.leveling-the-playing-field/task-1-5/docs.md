@@ -29,7 +29,7 @@ function loadFile(filePath) {
 
 //var myStuff = loadFile("https://raw.githubusercontent.com/AEW2015/522R/master/pages/01.leveling-the-playing-field/task-1-5/rx_tb.sv");
 var myStuff = loadFile("./rx_tb.sv");
-document.getElementById("rx_core").innerHTML = myStuff;
+document.getElementById("rx_core").innerHTML = window.location.pathname;
 </script>
 
 
