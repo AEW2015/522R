@@ -13,7 +13,7 @@ This uart has configurable clock rate and baud rate.
 It uses odd parity.
 
 
-<script>
+{assets:inline_js}
 function loadFile(filePath) {
   var result = null;
   var xmlhttp = new XMLHttpRequest();
@@ -33,7 +33,7 @@ document.getElementById("rx_tb").innerHTML = loadFile("http://wilsoninspace.com/
 document.getElementById("tx_tb").innerHTML = loadFile("http://wilsoninspace.com/BYU/user/pages/01.leveling-the-playing-field/task-1-5/tx_tb.sv");
 document.getElementById("axi_bus").innerHTML = loadFile("http://wilsoninspace.com/BYU/user/pages/01.leveling-the-playing-field/task-1-5/myUart_v1_0_S00_AXI.v");
 
-</script>
+{/assets}
 
 
 
