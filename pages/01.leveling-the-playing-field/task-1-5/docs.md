@@ -11,16 +11,9 @@ Here is my uart for tasks 1-5.
 This uart has configurable clock rate and baud rate.
 
 It uses odd parity.
-{assets:inline_js}
-  function initialize() {
-    var mapCanvas = document.getElementById('map_canvas');
-    var mapOptions = {
-      center: new google.maps.LatLng(44.5403, -78.5463),
-      zoom: 8,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    var map = new google.maps.Map(mapCanvas, mapOptions);
-  }
+
+{assets:inline_css}
+h1 {color: red !important;}
 {/assets}
 
 <script>
