@@ -13,7 +13,7 @@ This uart has configurable clock rate and baud rate.
 It uses odd parity.
 
 
-{assets:inline_js}
+{assets:js}
 function loadFile(filePath) {
   var result = null;
   var xmlhttp = new XMLHttpRequest();
@@ -33,16 +33,19 @@ document.getElementById("rx_tb").innerHTML = loadFile("http://wilsoninspace.com/
 document.getElementById("tx_tb").innerHTML = loadFile("http://wilsoninspace.com/BYU/user/pages/01.leveling-the-playing-field/task-1-5/tx_tb.sv");
 document.getElementById("axi_bus").innerHTML = loadFile("http://wilsoninspace.com/BYU/user/pages/01.leveling-the-playing-field/task-1-5/myUart_v1_0_S00_AXI.v");
 
-<details><summary>Reciever_Core.v</summary><p> 
-<pre><code class="verilog" id="rx_core">
-</code></pre>
-</details>
+{/asset}
 
-{/assets}
+
 
 
 The reciever core will report any errors in the parity of recieved bytes.
 
+
+
+<details><summary>Reciever_Core.v</summary><p> 
+<pre><code class="verilog" id="rx_core">
+</code></pre>
+</details>
 
 
 
