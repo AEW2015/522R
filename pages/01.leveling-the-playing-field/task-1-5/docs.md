@@ -13,32 +13,9 @@ This uart has configurable clock rate and baud rate.
 It uses odd parity.
 
 
-<!-- saved from url=(0040)http://sealevel.info/test_file_read.html -->
-<html class="gr__sealevel_info"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-<title>Test function loadFile()</title>
-</head>
 
-<body data-gr-c-s-loaded="true">
-<h1><i>Testing:</i> &nbsp;  function loadFile()</h1>
-<p><i>Reading from&nbsp;</i> <tt><b>file/hello.txt</b></tt></p>
 <script>
 
-// Synchronously read a text file from the web server with Ajax
-//
-// The filePath is relative to the web page folder.
-// Example:   myStuff = loadFile("Chuuk_data.txt");
-//
-// You can also pass a full URL, like http://sealevel.info/Chuuk1_data.json, but there
-// might be Access-Control-Allow-Origin issues. I found it works okay in Firefox, Edge,
-// or Opera, and works in IE 11 if the server is configured properly, but in Chrome it only
-// works if the domains exactly match (and note that "xyz.com" & "www.xyz.com" don't match).
-// Otherwise Chrome reports an error:
-//
-//   No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://sealevel.info' is therefore not allowed access.
-//
-// That happens even when "Access-Control-Allow-Origin *" is configured in .htaccess,
-// and even though I verified the headers returned (you can use a header-checker site like
-// http://www.webconfs.com/http-header-check.php to check it). I think it's a Chrome bug.
 function loadFile(filePath) {
   var result = null;
   var xmlhttp = new XMLHttpRequest();
@@ -50,204 +27,21 @@ function loadFile(filePath) {
   return result;
 }
 
-var myStuff = loadFile("./task-1-5/rx_tb.sv");
-alert(myStuff);
+//var myStuff = loadFile("https://raw.githubusercontent.com/AEW2015/522R/master/pages/01.leveling-the-playing-field/task-1-5/rx_tb.sv");
+var myStuff = loadFile("./rx_tb.sv");
+document.getElementById("rx_core").innerHTML = myStuff;
 </script>
 
 
 
-</body></html>
-
 The reciever core will report any errors in the parity of recieved bytes.
 
 <details><summary>Reciever_Core.v</summary><p> 
-<pre><code class="verilog">
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 09/09/2019 10:44:49 AM
-// Design Name: 
-// Module Name: Reciever_Core
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
-
-
-module Reciever_Core(
-
-    input  wire clk,
-    input  wire rst_n,
-    input  wire rx,
-    output reg rec_data,
-    output reg err_data,
-    output reg rx_busy,
-    output wire[7:0] data_rx
-    );
-    
-    function integer clog2;
-    input integer value;
-    begin
-    value = value-1;
-    for (clog2=0; value&gt;0; clog2=clog2+1)
-    value = value&gt;&gt;1;
-    end
-    endfunction
-    
-    parameter CLK_RATE   = 100_000_000;
-    parameter BAUD_RATE  = 19200;
-    
-    localparam BIT_COUNTER_MAX_VAL = CLK_RATE/BAUD_RATE/16 - 1;
-    localparam BIT_COUNTER_BITS = clog2(BIT_COUNTER_MAX_VAL);
-    
-    parameter POWERUP  = 3'b000;    
-    parameter IDLE     = 3'b001;    
-    parameter STRT     = 3'b010;    
-    parameter DATAREAD = 3'b011;    
-    parameter PARITY   = 3'b100;   
-    parameter STP      = 3'b101;
-    
-    reg [2:0] state,state_next;
-    reg [BIT_COUNTER_BITS-1:0] bit_timer;
-    wire [BIT_COUNTER_BITS-1:0] bit_timer_next;
-    reg [7:0] data,data_next;
-    reg [3:0] stime,stime_next;
-    reg [2:0] dtime,dtime_next;
-        
-    reg rx_reg;
-    reg parity_reg;
-    reg parity_reg_next;
-    wire pulse;
-    
-    always @ (posedge clk, negedge rst_n)
-    begin
-        if (rst_n==1'b0) 
-        begin
-            state &lt;= POWERUP;
-            data &lt;= 0;
-            stime &lt;= 0;
-            dtime &lt;= 0;
-            bit_timer &lt;= 0;
-            parity_reg &lt;= 0;
-            rx_reg &lt;= 0;
-        end
-        else if (clk==1'b1) 
-        begin
-            state &lt;=state_next;
-            data &lt;= data_next;
-            stime &lt;= stime_next;
-            dtime &lt;= dtime_next;
-            bit_timer &lt;= bit_timer_next;
-            parity_reg &lt;= parity_reg_next;
-            rx_reg &lt;= rx;
-        end
-    end
-    
-    always @ (state,pulse,stime,dtime,data,rx_reg,parity_reg)
-    begin
-        rx_busy = 1'b1;
-        rec_data = 1'b0;
-        err_data = 1'b0;
-        state_next = state;
-        stime_next = stime;
-        dtime_next = dtime;
-        data_next = data;
-        parity_reg_next = parity_reg;
-        case(state)
-            POWERUP:
-                if (rx_reg==1'b1)
-                    state_next = IDLE;
-            IDLE: begin
-                rx_busy = 0;
-                if( rx_reg==1'b0)
-                    state_next = STRT;  
-            end
-            STRT: begin
-                if (pulse == 1'b1)
-                    if (stime == 4'b0111)
-                    begin
-                        stime_next = 0;
-                        dtime_next = 0;
-                        parity_reg_next = 1'b1;
-                        state_next = DATAREAD;
-                    end
-                    else
-                        stime_next = stime + 1;
-            end
-            DATAREAD : begin
-                if (pulse == 1'b1)
-                    if (stime == 4'b1111)
-                    begin
-                        stime_next = 0;
-                        data_next = {rx_reg,data[7:1]};
-                        parity_reg_next = parity_reg ^ rx_reg;
-                        if (dtime == 3'b111)
-                        begin
-                            dtime_next = 0;
-                            state_next = PARITY;
-                        end
-                        else
-                            dtime_next = dtime + 1;
-                    end
-                    else
-                        stime_next = stime + 1;
-            end
-            PARITY: begin
-               if (pulse == 1'b1)
-                 if (stime == 4'b1111)
-                 begin
-                     stime_next = 0;
-                     parity_reg_next = parity_reg ^ rx_reg;
-                     state_next = STP;
-                   
-                 end
-                 else
-                     stime_next = stime + 1;
-            end
-            STP: begin
-               if (pulse == 1'b1)
-                 if (stime == 4'b1111)
-                 begin
-                     stime_next = 0;
-                     if (rx_reg == 1'b1) 
-                     begin
-                        rec_data = !parity_reg;
-                        err_data = parity_reg;
-                        state_next = IDLE;
-                     end
-                     else
-                     begin
-                        err_data = 1'b1;
-                        state_next = IDLE;
-                     end
-                 end
-                 else
-                     stime_next = stime + 1;
-            end
-            default: state_next = POWERUP;
-    
-        endcase
-    end
-    
- assign bit_timer_next = (bit_timer == BIT_COUNTER_MAX_VAL) ? 0 : (bit_timer+1);
- assign pulse = (bit_timer == BIT_COUNTER_MAX_VAL) ? 1'b1 : 0;
- assign data_rx = data;
-endmodule
-
+<pre><code class="verilog" id="rx_core">
 </code></pre>
 
-</p>
+
 </details>
 
 
