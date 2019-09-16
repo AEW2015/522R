@@ -3,6 +3,9 @@ title: 'Task 1-5'
 taxonomy:
     category:
         - docs
+process:
+    markdown: true
+    twig: true
 visible: true
 ---
 
