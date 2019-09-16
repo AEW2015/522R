@@ -27,7 +27,7 @@ function loadFile(filePath) {
 
 //document.getElementById("rx_core").innerHTML = loadFile("http://wilsoninspace.com/BYU/user/pages/01.leveling-the-playing-field/task-1-5/Reciever_Core.v");
 //document.getElementById("rx_core").innerHTML = loadFile("https://raw.githubusercontent.com/AEW2015/522R/master/pages/01.leveling-the-playing-field/task-1-5/rx_tb.sv");
-window.alert("hello");
+window.alert(loadFile("http://wilsoninspace.com/BYU/user/pages/01.leveling-the-playing-field/task-1-5/transmitter_core.v"));
 document.write("hello doc");
 document.getElementById("rx_core").innerHTML = "test hello";
 document.getElementById("tx_core").innerHTML = loadFile("http://wilsoninspace.com/BYU/user/pages/01.leveling-the-playing-field/task-1-5/transmitter_core.v");
@@ -35,7 +35,7 @@ document.getElementById("rx_tb").innerHTML = loadFile("http://wilsoninspace.com/
 document.getElementById("tx_tb").innerHTML = loadFile("http://wilsoninspace.com/BYU/user/pages/01.leveling-the-playing-field/task-1-5/tx_tb.sv");
 document.getElementById("axi_bus").innerHTML = loadFile("http://wilsoninspace.com/BYU/user/pages/01.leveling-the-playing-field/task-1-5/myUart_v1_0_S00_AXI.v");
 
-<p id="tx_core"></p>
+
 
 {/assets}
 
