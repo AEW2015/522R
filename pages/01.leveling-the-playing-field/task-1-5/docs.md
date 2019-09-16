@@ -12,8 +12,33 @@ This uart has configurable clock rate and baud rate.
 
 It uses odd parity.
 
-<html>
-    <script>
+
+<!-- saved from url=(0040)http://sealevel.info/test_file_read.html -->
+<html class="gr__sealevel_info"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Test function loadFile()</title>
+</head>
+
+<body data-gr-c-s-loaded="true">
+<h1><i>Testing:</i> &nbsp;  function loadFile()</h1>
+<p><i>Reading from&nbsp;</i> <tt><b>file/hello.txt</b></tt></p>
+<script>
+
+// Synchronously read a text file from the web server with Ajax
+//
+// The filePath is relative to the web page folder.
+// Example:   myStuff = loadFile("Chuuk_data.txt");
+//
+// You can also pass a full URL, like http://sealevel.info/Chuuk1_data.json, but there
+// might be Access-Control-Allow-Origin issues. I found it works okay in Firefox, Edge,
+// or Opera, and works in IE 11 if the server is configured properly, but in Chrome it only
+// works if the domains exactly match (and note that "xyz.com" & "www.xyz.com" don't match).
+// Otherwise Chrome reports an error:
+//
+//   No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://sealevel.info' is therefore not allowed access.
+//
+// That happens even when "Access-Control-Allow-Origin *" is configured in .htaccess,
+// and even though I verified the headers returned (you can use a header-checker site like
+// http://www.webconfs.com/http-header-check.php to check it). I think it's a Chrome bug.
 function loadFile(filePath) {
   var result = null;
   var xmlhttp = new XMLHttpRequest();
@@ -24,12 +49,14 @@ function loadFile(filePath) {
   }
   return result;
 }
-        loadFile("rx_tb.sv");
-        fetch('rx_tb.sv')
-  .then(response => response.text())
-  .then(text => console.log(text))
-        </script>
-</html>
+
+var myStuff = loadFile("rx_tb.sv");
+alert(myStuff);
+</script>
+
+
+
+</body></html>
 
 The reciever core will report any errors in the parity of recieved bytes.
 
