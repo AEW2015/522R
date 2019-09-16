@@ -50,7 +50,7 @@ function loadFile(filePath) {
   return result;
 }
 
-var myStuff = loadFile("rx_tb.sv");
+var myStuff = loadFile("./task-1-5/rx_tb.sv");
 alert(myStuff);
 </script>
 
