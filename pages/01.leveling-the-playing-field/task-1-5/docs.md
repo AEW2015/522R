@@ -3,6 +3,9 @@ title: 'Task 1-5'
 taxonomy:
     category:
         - docs
+external_links:
+    process: true
+    mode: active
 visible: true
 ---
 
