@@ -12,12 +12,8 @@ This uart has configurable clock rate and baud rate.
 
 It uses odd parity.
 
-{assets:inline_css}
-h1 {color: red !important;}
-{/assets}
 
 <script>
-
 function loadFile(filePath) {
   var result = null;
   var xmlhttp = new XMLHttpRequest();
