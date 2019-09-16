@@ -13,7 +13,7 @@ This uart has configurable clock rate and baud rate.
 It uses odd parity.
 
 
-
+{{ filecontent('rx_tb.sv') }}
 
 
 
