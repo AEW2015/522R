@@ -9,13 +9,6 @@ process:
 visible: true
 ---
 
----
-title: 'Task 1-5'
-taxonomy:
-    category:
-        - docs
-visible: true
----
 
 Here is my uart for tasks 1-5.
 
