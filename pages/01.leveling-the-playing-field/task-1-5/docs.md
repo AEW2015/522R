@@ -11,9 +11,19 @@ Here is my uart for tasks 1-5.
 This uart has configurable clock rate and baud rate.
 
 It uses odd parity.
-
-
 {assets:inline_js}
+  function initialize() {
+    var mapCanvas = document.getElementById('map_canvas');
+    var mapOptions = {
+      center: new google.maps.LatLng(44.5403, -78.5463),
+      zoom: 8,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+  }
+{/assets}
+
+<script>
 
 function loadFile(filePath) {
   var result = null;
@@ -34,7 +44,7 @@ document.getElementById("rx_tb").innerHTML = loadFile("http://wilsoninspace.com/
 document.getElementById("tx_tb").innerHTML = loadFile("http://wilsoninspace.com/BYU/user/pages/01.leveling-the-playing-field/task-1-5/tx_tb.sv");
 document.getElementById("axi_bus").innerHTML = loadFile("http://wilsoninspace.com/BYU/user/pages/01.leveling-the-playing-field/task-1-5/myUart_v1_0_S00_AXI.v");
 
-{/assets}
+</script>
 
 
 The reciever core will report any errors in the parity of recieved bytes.
