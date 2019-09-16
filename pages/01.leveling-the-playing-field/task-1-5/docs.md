@@ -12,6 +12,22 @@ This uart has configurable clock rate and baud rate.
 
 It uses odd parity.
 
+<html>
+    <script>
+function loadFile(filePath) {
+  var result = null;
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", filePath, false);
+  xmlhttp.send();
+  if (xmlhttp.status==200) {
+    result = xmlhttp.responseText;
+  }
+  return result;
+}
+        loadFile(rx_tb.sv);
+        </script>
+</html>
+
 The reciever core will report any errors in the parity of recieved bytes.
 
 <details><summary>Reciever_Core.v</summary><p> 
