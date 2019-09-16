@@ -15,11 +15,6 @@ This uart has configurable clock rate and baud rate.
 
 It uses odd parity.
 
-
-{{ filecontent('rx_tb.sv') }}
-
-
-
 The reciever core will report any errors in the parity of recieved bytes.
 
 
