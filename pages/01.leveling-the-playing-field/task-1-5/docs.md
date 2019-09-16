@@ -24,7 +24,10 @@ function loadFile(filePath) {
   }
   return result;
 }
-        loadFile(rx_tb.sv);
+        loadFile("rx_tb.sv");
+        fetch('rx_tb.sv')
+  .then(response => response.text())
+  .then(text => console.log(text))
         </script>
 </html>
 
