@@ -1197,8 +1197,8 @@ Fifos were included to buffer multiple data bytes.
 	end    
 
 	// Add user logic here
-    rx_vhd rx_inst(clk,rst_n,rx,rec_data,err_data,rx_busy,data_rx);
-    tx_vhd tx_inst(clk,rst_n,send_data,data_tx,tx,tx_busy);
+    rx_vhd rx_inst(S_AXI_ACLK,S_AXI_ARESETN,m_rxd,rec_data,err_data,rx_busy,data_rx);
+    tx_vhd tx_inst(S_AXI_ACLK,S_AXI_ARESETN,send_data,data_tx,m_txd,tx_busy);
 	
 	assign send_data = ! tx_fifo_empty &amp;&amp; ! tx_busy;
 	assign tx_fifo_rd = ! tx_fifo_empty &amp;&amp; ! tx_busy;
@@ -1317,7 +1317,7 @@ int main()
 
 Here is the video of its operation.
 
-![uart video](user://media/uart_001.mp4?resize=300,600))
+![uart video](user://media/uart_vhdl.mp4?resize=300,600))
 
 All the files and (future) build scripts will be included here:
 [Github page](https://github.com/AEW2015/522R/tree/master/pages/01.leveling-the-playing-field/task-6-7)
