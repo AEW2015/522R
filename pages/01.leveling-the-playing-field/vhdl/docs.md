@@ -1,5 +1,5 @@
 ---
-title: 'Task 6-7'
+title: 'VHDL Uart'
 taxonomy:
     category:
         - docs
