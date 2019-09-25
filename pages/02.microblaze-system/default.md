@@ -6,7 +6,7 @@ Here is my microblaze system.
 
 
 
-This is the block diagram of connecting myUart to the Microblaze.
+This is the block diagram of the Microblaze System.
 
 ![block diagram](block_ub.JPG)
 
@@ -67,7 +67,7 @@ int main()
 
 Here is the video of its operation.
 
-![uart video](user://media/ub000.mp4?resize=620,480))
+![microblaze video](user://media/ub000.mp4?resize=620,480))
 
 All the files and (future) build scripts will be included here:
 [Github page](https://github.com/AEW2015/522R/tree/master/pages/02.microblaze-system)

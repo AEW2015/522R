@@ -11,7 +11,7 @@ Here is my bram test.
 
 
 
-This is the block diagram of connecting myUart to the Microblaze.
+This is the block diagram of connecting the bram to the Microblaze.
 
 ![block diagram](block_ub.JPG)
 
@@ -102,7 +102,7 @@ int main()
 
 Here is the video of its operation.
 
-![uart video](user://media/ub_bram000.mp4?resize=620,480))
+![bram video](user://media/ub_bram000.mp4?resize=620,480))
 
 All the files and (future) build scripts will be included here:
 [Github page](https://github.com/AEW2015/522R/tree/master/pages/02.microblaze-system/bram-test)
