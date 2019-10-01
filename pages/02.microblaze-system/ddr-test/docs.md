@@ -141,7 +141,9 @@ int main()
 </code></pre></p></details>
 
 
-Here is the video of its operation.
+Here is the output of its operation.
+
+It passed the ddr hash test.
 
 ![Addresses](ddr_output.png)
 
