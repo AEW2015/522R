@@ -22,7 +22,7 @@ These are the addresses I assigned to all the perpherials.
 
 
 <details><summary>code.c</summary><p><pre><code class="c">
-#include <stdio.h>
+#include &lt;stdio.h&gt;
 #include "platform.h"
 #include "xil_printf.h"
 #include "xil_io.h"
@@ -51,12 +51,12 @@ volatile unsigned int * memptr = (unsigned int*) XPAR_MIG_7SERIES_0_BASEADDR;
 
 unsigned int hash(unsigned int key)
 {
-key += ~(key << 15);
-key ^= (key >> 10);
-key += (key << 3);
-key ^= (key >> 6);
-key += ~(key << 11);
-key ^= (key >> 16);
+key += ~(key &lt;&lt; 15);
+key ^= (key &gt;&gt; 10);
+key += (key &lt;&lt; 3);
+key ^= (key &gt;&gt; 6);
+key += ~(key &lt;&lt; 11);
+key ^= (key &gt;&gt; 16);
 return key;
 }
 
@@ -76,7 +76,7 @@ int main()
     PRINT("Writing to BRAM\n\r");
 
 
-    for(index_t=0; index_t<BRAMSIZE; index_t++)
+    for(index_t=0; index_t&lt;BRAMSIZE; index_t++)
       {
 	*(brambase+index_t) = index_t+1;
 	PRINT("Write %d at location %d = %X\n\r",index_t+1,index_t,brambase+index_t);
@@ -86,7 +86,7 @@ int main()
     PRINT("\n\rReading from memory and checking\n\r");
 
 
-    for(index_t=0; index_t<BRAMSIZE; index_t++)
+    for(index_t=0; index_t&lt;BRAMSIZE; index_t++)
     {
       PRINT("Read %d at location %d = %X\n\r",*(brambase+index_t),index_t,brambase+index_t);
 
@@ -100,7 +100,7 @@ int main()
     PRINT("\n\rWriting to DDR\n\r");
 
     print("BEGIN WRITE\n\r");
-    for (i = 0; i < TEST_SIZE; i++)
+    for (i = 0; i &lt; TEST_SIZE; i++)
       {
         memptr[i] = hash(i);
       }
@@ -108,7 +108,7 @@ int main()
     // Read TEST_SIZE words to memory and compare with golden values
     print("BEGIN READ\n\r");
     errors = 0;
-    for (i = 0; i < TEST_SIZE; i++)
+    for (i = 0; i &lt; TEST_SIZE; i++)
       {
         if (memptr[i] != hash(i))
   	errors++;
@@ -126,9 +126,9 @@ int main()
 
 
     	dip_read = Xil_In32(DIP_DATA);
-    	rgb_write = 0x7 & dip_read;
-    	rgb_write = rgb_write << 3 | rgb_write;
-    	rgb_write = rgb_write << 6 | rgb_write;
+    	rgb_write = 0x7 &amp; dip_read;
+    	rgb_write = rgb_write &lt;&lt; 3 | rgb_write;
+    	rgb_write = rgb_write &lt;&lt; 6 | rgb_write;
     	Xil_Out32(RGB_DATA,rgb_write);
     }
 
