@@ -69,6 +69,7 @@ This is confirmed by ug472.
 CLKOUT[0:6]_PHASE is a real number between –360.000 to 360.000 in increments of 1/56 the FVCO and/or increments depending on CLKOUT_DIVIDE.
 Each clock out can have its own phase shift.
 
+## Clock Demo 
 
 <details><summary>my_pll.vhd</summary><p><pre><code class="vhdl">library IEEE;
 library IEEE;
@@ -190,3 +191,6 @@ end STRUCTURE;
 </code></pre></p></details>
 
 ![My PLL Block](my_pll_bd.png)
+
+
+![bram video](user://media/clk000.mp4?resize=620,480))
