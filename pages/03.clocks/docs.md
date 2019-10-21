@@ -180,7 +180,7 @@ plle2_adv_inst: unisim.vcomponents.PLLE2_ADV
       DCLK =&gt; '0',
       DEN =&gt; '0',
       DI(15 downto 0) =&gt; B"0000000000000000",
-      DO(15 downto 0) =&gt; open(15 downto 0),
+      DO(15 downto 0) =&gt; open,
       DRDY =&gt; open,
       DWE =&gt; '0',
       LOCKED =&gt; locked,
