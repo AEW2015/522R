@@ -6,7 +6,7 @@ taxonomy:
 visible: true
 ---
 
-Basic Clock Generation, On-chip Feedback
+## Basic Clock Generation, On-chip Feedback 
 
 Clock block diagram
 
@@ -61,7 +61,7 @@ Or just rotating the clocks in the first position will get you different varitio
 ![Clock Tables](clktab.png)
 
 
-Basic Clock Generation, On-chip Feedback, Fixed Phase Shifting
+## Basic Clock Generation, On-chip Feedback, Fixed Phase Shifting 
 
 The Phase is dependent on the give frequency of the VCO and the main clock divide chosen.
 
@@ -69,3 +69,124 @@ This is confirmed by ug472.
 CLKOUT[0:6]_PHASE is a real number between –360.000 to 360.000 in increments of 1/56 the FVCO and/or increments depending on CLKOUT_DIVIDE.
 Each clock out can have its own phase shift.
 
+
+<details><summary>my_pll.vhd</summary><p><pre><code class="vhdl">library IEEE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+
+entity my_pll is
+  port (
+    clk_out1 : out STD_LOGIC;
+    clk_out2 : out STD_LOGIC;
+    clk_out3 : out STD_LOGIC;
+    clk_out4 : out STD_LOGIC;
+    locked : out STD_LOGIC;
+    clk_in1 : in STD_LOGIC
+  );
+end my_pll;
+
+architecture STRUCTURE of my_pll is
+  signal clk_in1_clk_wiz_0 : STD_LOGIC;
+  signal clk_out1_clk_wiz_0 : STD_LOGIC;
+  signal clk_out2_clk_wiz_0 : STD_LOGIC;
+  signal clk_out3_clk_wiz_0 : STD_LOGIC;
+  signal clk_out4_clk_wiz_0 : STD_LOGIC;
+  signal clkfbout_buf_clk_wiz_0 : STD_LOGIC;
+  signal clkfbout_clk_wiz_0 : STD_LOGIC;
+begin
+clkf_buf: unisim.vcomponents.BUFG
+     port map (
+      I =&gt; clkfbout_clk_wiz_0,
+      O =&gt; clkfbout_buf_clk_wiz_0
+    );
+clkin1_ibufg: unisim.vcomponents.IBUF
+    generic map(
+      IOSTANDARD =&gt; "DEFAULT"
+    )
+        port map (
+      I =&gt; clk_in1,
+      O =&gt; clk_in1_clk_wiz_0
+    );
+clkout1_buf: unisim.vcomponents.BUFG
+     port map (
+      I =&gt; clk_out1_clk_wiz_0,
+      O =&gt; clk_out1
+    );
+clkout2_buf: unisim.vcomponents.BUFG
+     port map (
+      I =&gt; clk_out2_clk_wiz_0,
+      O =&gt; clk_out2
+    );
+clkout3_buf: unisim.vcomponents.BUFG
+     port map (
+      I =&gt; clk_out3_clk_wiz_0,
+      O =&gt; clk_out3
+    );
+clkout4_buf: unisim.vcomponents.BUFG
+     port map (
+      I =&gt; clk_out4_clk_wiz_0,
+      O =&gt; clk_out4
+    );
+plle2_adv_inst: unisim.vcomponents.PLLE2_ADV
+    generic map(
+      BANDWIDTH =&gt; "OPTIMIZED",
+      CLKFBOUT_MULT =&gt; 9,
+      CLKFBOUT_PHASE =&gt; 0.000000,
+      CLKIN1_PERIOD =&gt; 10.000000,
+      CLKIN2_PERIOD =&gt; 0.000000,
+      CLKOUT0_DIVIDE =&gt; 90,
+      CLKOUT0_DUTY_CYCLE =&gt; 0.500000,
+      CLKOUT0_PHASE =&gt; 0.000000,
+      CLKOUT1_DIVIDE =&gt; 90,
+      CLKOUT1_DUTY_CYCLE =&gt; 0.500000,
+      CLKOUT1_PHASE =&gt; 90.000000,
+      CLKOUT2_DIVIDE =&gt; 3,
+      CLKOUT2_DUTY_CYCLE =&gt; 0.500000,
+      CLKOUT2_PHASE =&gt; 0.000000,
+      CLKOUT3_DIVIDE =&gt; 12,
+      CLKOUT3_DUTY_CYCLE =&gt; 0.500000,
+      CLKOUT3_PHASE =&gt; 0.000000,
+      CLKOUT4_DIVIDE =&gt; 1,
+      CLKOUT4_DUTY_CYCLE =&gt; 0.500000,
+      CLKOUT4_PHASE =&gt; 0.000000,
+      CLKOUT5_DIVIDE =&gt; 1,
+      CLKOUT5_DUTY_CYCLE =&gt; 0.500000,
+      CLKOUT5_PHASE =&gt; 0.000000,
+      COMPENSATION =&gt; "ZHOLD",
+      DIVCLK_DIVIDE =&gt; 1,
+      IS_CLKINSEL_INVERTED =&gt; '0',
+      IS_PWRDWN_INVERTED =&gt; '0',
+      IS_RST_INVERTED =&gt; '0',
+      REF_JITTER1 =&gt; 0.010000,
+      REF_JITTER2 =&gt; 0.010000,
+      STARTUP_WAIT =&gt; "FALSE"
+    )
+        port map (
+      CLKFBIN =&gt; clkfbout_buf_clk_wiz_0,
+      CLKFBOUT =&gt; clkfbout_clk_wiz_0,
+      CLKIN1 =&gt; clk_in1_clk_wiz_0,
+      CLKIN2 =&gt; '0',
+      CLKINSEL =&gt; '1',
+      CLKOUT0 =&gt; clk_out1_clk_wiz_0,
+      CLKOUT1 =&gt; clk_out2_clk_wiz_0,
+      CLKOUT2 =&gt; clk_out3_clk_wiz_0,
+      CLKOUT3 =&gt; clk_out4_clk_wiz_0,
+      CLKOUT4 =&gt; open,
+      CLKOUT5 =&gt; open,
+      DADDR(6 downto 0) =&gt; B"0000000",
+      DCLK =&gt; '0',
+      DEN =&gt; '0',
+      DI(15 downto 0) =&gt; B"0000000000000000",
+      DO(15 downto 0) =&gt; open(15 downto 0),
+      DRDY =&gt; open,
+      DWE =&gt; '0',
+      LOCKED =&gt; locked,
+      PWRDWN =&gt; '0',
+      RST =&gt; '0'
+    );
+end STRUCTURE;
+</code></pre></p></details>
+
+![My PLL Block](my_pll_bd.png)
