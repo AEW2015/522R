@@ -26,13 +26,13 @@ insert counter code here
 ###Steps:
 Does the synthesized schematic make sense to you?
 
-A diagram of both the top level design and the inside of the counter block.
+A rough hand sketch of both the top level design and the inside of the counter block.
 
 Explain the resulting circuits.
 
 Do you understand why the synthesis tool did what it did and how it implmenets your circuit?
 
-Bring up timing report and find critical path and draw it on the diagram.
+Bring up timing report and find critical path and draw it on the sketch.
 
 ###Questions:
 
@@ -74,9 +74,15 @@ Add a PLL to the design and see the change in timing.
 
 How does adding the PLL change things that you see in the synthesized circuit and in the timing report? Explain. 
 
+A:It uses the feedback loop to shift the clock signal so that there is a zero delay clock. It makes it so the clock arrives at the launch flip flop (q-reg[2]) at -4.836ns so that it can arrive at the capture flip-flop at .397ns giving us 5.233ns from launch to capture. We are required to get to the capture at 6.944ns so our new slack is (6.944 - .397) 6.547ns which is slightly better than the slack without the PLL.
+
 Do the actual path delays change or is the time scale simply shifted and by how much? 
 
-Can you make sense of this based on the clock path?
+A:The path delays do not change, the time scale is shifted (by -9.006ns).
+
+Can you make sense of this based on the clock path? 
+
+A:Yes.
 
 ##Part 3
 
@@ -88,7 +94,11 @@ Change the counter to be 64 bits wide and rerun
 
 Based on what you see, how wide of a counter do you estimate would work at this clock rate? 
 
+A:246 bits, this is dependent on the CARRY4 delays which for the high majority is .114ns.
+
 Other than having a longer worst case combinational path, does having a much longer counter affect anything else you see in this timing report? Can you explain this?
+
+A:Slightly longer net rounting delays. Yes, the tools are taking the output up to the beginning LUT (longest delay) and then chainning the carry chains back to back to get back to the output making it so there is almost no routing delay between the carry chains.
 
 ##Part 4
 
@@ -96,6 +106,17 @@ Other than having a longer worst case combinational path, does having a much lon
 Set an input delay for the LSB of the incVal and an output delay for the MSB of the q. Look at the timing report.
 
 ###Questions:
+
+Range of Input/Output Delays that work:
+Input: 1.5ns Output: 0ns
+Input: 0ns Output: 7.97ns
+Input: 0.5ns Output: 7.95ns
+Input: 1.5ns Output: 6.25ns
+Input: 0.25ns Output: 7.97ns
+
+
+
+
 
 Q:What is an input delay? 
 
