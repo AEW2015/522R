@@ -50,11 +50,17 @@ A diagram of both the top level design and the inside of the counter block.
 
 ![Counter Schematic](schematic_counter.png)
 
-Explain the resulting circuits.
+The right side of the circuit is the flipflops storing the counter.
+The bottom left is the multiplir for the incval.
+The center of the circuit is the adder logic with the carry chain.
 
 Do you understand why the synthesis tool did what it did and how it implmenets your circuit?
 
+Yes, we followed the control signals and understand how the cirucit decides between clearing, incrementing, decrementing, and maintaining the current value.
+
 Bring up timing report and find critical path and draw it on the diagram.
+
+The critical path is the carry chain.
 
 ![Counter Critical Path](crit_path_counter.png)
 
