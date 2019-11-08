@@ -1,0 +1,557 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1.3 (lin64) Build 2644227 Wed Sep  4 09:44:18 MDT 2019
+| Date         : Fri Nov  8 15:59:07 2019
+| Host         : CB461-EE11236.ee.byu.edu running 64-bit Ubuntu 18.04.3 LTS
+| Command      : report_timing -from [get_pins {design_1_i/hbTest_0/U0/q_reg[2]/C}] -to [get_pins {design_1_i/hbTest_0/U0/q_reg[61]/D}] -delay_type min_max -max_paths 10 -sort_by group -input_pins -routable_nets -name timing_1 -file /home/jenningsl/test.rpt
+| Design       : design_1_wrapper
+| Device       : 7a200t-sbg484
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.073ns  (required time - arrival time)
+  Source:                 design_1_i/hbTest_0/U0/q_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_design_1_clk_wiz_0_0  {rise@0.000ns fall@2.381ns period=4.762ns})
+  Destination:            design_1_i/hbTest_0/U0/q_reg[61]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_design_1_clk_wiz_0_0  {rise@0.000ns fall@2.381ns period=4.762ns})
+  Path Group:             clk_out1_design_1_clk_wiz_0_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            4.762ns  (clk_out1_design_1_clk_wiz_0_0 rise@4.762ns - clk_out1_design_1_clk_wiz_0_0 rise@0.000ns)
+  Data Path Delay:        4.569ns  (logic 3.268ns (71.531%)  route 1.301ns (28.469%))
+  Logic Levels:           18  (CARRY4=16 LUT4=1 LUT5=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -2.667ns = ( 2.095 - 4.762 ) 
+    Source Clock Delay      (SCD):    -2.989ns
+    Clock Pessimism Removal (CPR):    -0.371ns
+  Clock Uncertainty:      0.133ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.257ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_design_1_clk_wiz_0_0 rise edge)
+                                                      0.000     0.000 r  
+    U20                                               0.000     0.000 r  clk_0 (IN)
+                         net (fo=0)                   0.000     0.000    design_1_i/clk_wiz_0/inst/clk_in1
+    U20                                                               r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/I
+    U20                  IBUF (Prop_ibuf_I_O)         0.983     0.983 r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.253     2.236    design_1_i/clk_wiz_0/inst/clk_in1_design_1_clk_wiz_0_0
+    PLLE2_ADV_X0Y2                                                    r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -9.006    -6.770 r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.837    -4.932    design_1_i/clk_wiz_0/inst/clk_out1_design_1_clk_wiz_0_0
+    BUFGCTRL_X0Y0                                                     r  design_1_i/clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -4.836 r  design_1_i/clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=64, routed)          1.847    -2.989    design_1_i/hbTest_0/U0/clk
+    SLICE_X0Y112         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y112         FDRE (Prop_fdre_C_Q)         0.456    -2.533 r  design_1_i/hbTest_0/U0/q_reg[2]/Q
+                         net (fo=2, routed)           0.666    -1.867    design_1_i/hbTest_0/U0/q[2]
+    SLICE_X0Y112                                                      r  design_1_i/hbTest_0/U0/__1_carry_i_1/I0
+    SLICE_X0Y112         LUT4 (Prop_lut4_I0_O)        0.154    -1.713 r  design_1_i/hbTest_0/U0/__1_carry_i_1/O
+                         net (fo=2, routed)           0.625    -1.087    design_1_i/hbTest_0/U0/__1_carry_i_1_n_0
+    SLICE_X0Y112                                                      r  design_1_i/hbTest_0/U0/__1_carry_i_4/I4
+    SLICE_X0Y112         LUT5 (Prop_lut5_I4_O)        0.327    -0.760 r  design_1_i/hbTest_0/U0/__1_carry_i_4/O
+                         net (fo=1, routed)           0.000    -0.760    design_1_i/hbTest_0/U0/__1_carry_i_4_n_0
+    SLICE_X0Y112                                                      r  design_1_i/hbTest_0/U0/__1_carry/S[3]
+    SLICE_X0Y112         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    -0.359 r  design_1_i/hbTest_0/U0/__1_carry/CO[3]
+                         net (fo=1, routed)           0.000    -0.359    design_1_i/hbTest_0/U0/__1_carry_n_0
+    SLICE_X0Y113                                                      r  design_1_i/hbTest_0/U0/__1_carry__0/CI
+    SLICE_X0Y113         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    -0.245 r  design_1_i/hbTest_0/U0/__1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    -0.245    design_1_i/hbTest_0/U0/__1_carry__0_n_0
+    SLICE_X0Y114                                                      r  design_1_i/hbTest_0/U0/__1_carry__1/CI
+    SLICE_X0Y114         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    -0.131 r  design_1_i/hbTest_0/U0/__1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    -0.131    design_1_i/hbTest_0/U0/__1_carry__1_n_0
+    SLICE_X0Y115                                                      r  design_1_i/hbTest_0/U0/__1_carry__2/CI
+    SLICE_X0Y115         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    -0.017 r  design_1_i/hbTest_0/U0/__1_carry__2/CO[3]
+                         net (fo=1, routed)           0.000    -0.017    design_1_i/hbTest_0/U0/__1_carry__2_n_0
+    SLICE_X0Y116                                                      r  design_1_i/hbTest_0/U0/__1_carry__3/CI
+    SLICE_X0Y116         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.097 r  design_1_i/hbTest_0/U0/__1_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     0.097    design_1_i/hbTest_0/U0/__1_carry__3_n_0
+    SLICE_X0Y117                                                      r  design_1_i/hbTest_0/U0/__1_carry__4/CI
+    SLICE_X0Y117         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.211 r  design_1_i/hbTest_0/U0/__1_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     0.211    design_1_i/hbTest_0/U0/__1_carry__4_n_0
+    SLICE_X0Y118                                                      r  design_1_i/hbTest_0/U0/__1_carry__5/CI
+    SLICE_X0Y118         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.325 r  design_1_i/hbTest_0/U0/__1_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     0.325    design_1_i/hbTest_0/U0/__1_carry__5_n_0
+    SLICE_X0Y119                                                      r  design_1_i/hbTest_0/U0/__1_carry__6/CI
+    SLICE_X0Y119         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.439 r  design_1_i/hbTest_0/U0/__1_carry__6/CO[3]
+                         net (fo=1, routed)           0.000     0.439    design_1_i/hbTest_0/U0/__1_carry__6_n_0
+    SLICE_X0Y120                                                      r  design_1_i/hbTest_0/U0/__1_carry__7/CI
+    SLICE_X0Y120         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.553 r  design_1_i/hbTest_0/U0/__1_carry__7/CO[3]
+                         net (fo=1, routed)           0.000     0.553    design_1_i/hbTest_0/U0/__1_carry__7_n_0
+    SLICE_X0Y121                                                      r  design_1_i/hbTest_0/U0/__1_carry__8/CI
+    SLICE_X0Y121         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.667 r  design_1_i/hbTest_0/U0/__1_carry__8/CO[3]
+                         net (fo=1, routed)           0.000     0.667    design_1_i/hbTest_0/U0/__1_carry__8_n_0
+    SLICE_X0Y122                                                      r  design_1_i/hbTest_0/U0/__1_carry__9/CI
+    SLICE_X0Y122         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.781 r  design_1_i/hbTest_0/U0/__1_carry__9/CO[3]
+                         net (fo=1, routed)           0.000     0.781    design_1_i/hbTest_0/U0/__1_carry__9_n_0
+    SLICE_X0Y123                                                      r  design_1_i/hbTest_0/U0/__1_carry__10/CI
+    SLICE_X0Y123         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.895 r  design_1_i/hbTest_0/U0/__1_carry__10/CO[3]
+                         net (fo=1, routed)           0.000     0.895    design_1_i/hbTest_0/U0/__1_carry__10_n_0
+    SLICE_X0Y124                                                      r  design_1_i/hbTest_0/U0/__1_carry__11/CI
+    SLICE_X0Y124         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.009 r  design_1_i/hbTest_0/U0/__1_carry__11/CO[3]
+                         net (fo=1, routed)           0.009     1.018    design_1_i/hbTest_0/U0/__1_carry__11_n_0
+    SLICE_X0Y125                                                      r  design_1_i/hbTest_0/U0/__1_carry__12/CI
+    SLICE_X0Y125         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.132 r  design_1_i/hbTest_0/U0/__1_carry__12/CO[3]
+                         net (fo=1, routed)           0.000     1.132    design_1_i/hbTest_0/U0/__1_carry__12_n_0
+    SLICE_X0Y126                                                      r  design_1_i/hbTest_0/U0/__1_carry__13/CI
+    SLICE_X0Y126         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.246 r  design_1_i/hbTest_0/U0/__1_carry__13/CO[3]
+                         net (fo=1, routed)           0.000     1.246    design_1_i/hbTest_0/U0/__1_carry__13_n_0
+    SLICE_X0Y127                                                      r  design_1_i/hbTest_0/U0/__1_carry__14/CI
+    SLICE_X0Y127         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     1.580 r  design_1_i/hbTest_0/U0/__1_carry__14/O[1]
+                         net (fo=1, routed)           0.000     1.580    design_1_i/hbTest_0/U0/__1_carry__14_n_6
+    SLICE_X0Y127         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[61]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_design_1_clk_wiz_0_0 rise edge)
+                                                      4.762     4.762 r  
+    U20                                               0.000     4.762 r  clk_0 (IN)
+                         net (fo=0)                   0.000     4.762    design_1_i/clk_wiz_0/inst/clk_in1
+    U20                                                               r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/I
+    U20                  IBUF (Prop_ibuf_I_O)         0.849     5.611 r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181     6.792    design_1_i/clk_wiz_0/inst/clk_in1_design_1_clk_wiz_0_0
+    PLLE2_ADV_X0Y2                                                    r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.262    -1.469 r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.755     0.286    design_1_i/clk_wiz_0/inst/clk_out1_design_1_clk_wiz_0_0
+    BUFGCTRL_X0Y0                                                     r  design_1_i/clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     0.377 r  design_1_i/clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=64, routed)          1.718     2.095    design_1_i/hbTest_0/U0/clk
+    SLICE_X0Y127         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[61]/C
+                         clock pessimism             -0.371     1.724    
+                         clock uncertainty           -0.133     1.591    
+    SLICE_X0Y127         FDRE (Setup_fdre_C_D)        0.062     1.653    design_1_i/hbTest_0/U0/q_reg[61]
+  -------------------------------------------------------------------
+                         required time                          1.653    
+                         arrival time                          -1.580    
+  -------------------------------------------------------------------
+                         slack                                  0.073    
+
+Slack (MET) :             0.073ns  (required time - arrival time)
+  Source:                 design_1_i/hbTest_0/U0/q_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_design_1_clk_wiz_0_0  {rise@0.000ns fall@2.381ns period=4.762ns})
+  Destination:            design_1_i/hbTest_0/U0/q_reg[61]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_design_1_clk_wiz_0_0_1  {rise@0.000ns fall@2.381ns period=4.762ns})
+  Path Group:             clk_out1_design_1_clk_wiz_0_0_1
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            4.762ns  (clk_out1_design_1_clk_wiz_0_0_1 rise@4.762ns - clk_out1_design_1_clk_wiz_0_0 rise@0.000ns)
+  Data Path Delay:        4.569ns  (logic 3.268ns (71.531%)  route 1.301ns (28.469%))
+  Logic Levels:           18  (CARRY4=16 LUT4=1 LUT5=1)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -2.667ns = ( 2.095 - 4.762 ) 
+    Source Clock Delay      (SCD):    -2.989ns
+    Clock Pessimism Removal (CPR):    -0.371ns
+  Clock Uncertainty:      0.133ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.257ns
+    Phase Error              (PE):    0.000ns
+  Clock Domain Crossing:  Inter clock paths are considered valid unless explicitly excluded by timing constraints such as set_clock_groups or set_false_path.
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_design_1_clk_wiz_0_0 rise edge)
+                                                      0.000     0.000 r  
+    U20                                               0.000     0.000 r  clk_0 (IN)
+                         net (fo=0)                   0.000     0.000    design_1_i/clk_wiz_0/inst/clk_in1
+    U20                                                               r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/I
+    U20                  IBUF (Prop_ibuf_I_O)         0.983     0.983 r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.253     2.236    design_1_i/clk_wiz_0/inst/clk_in1_design_1_clk_wiz_0_0
+    PLLE2_ADV_X0Y2                                                    r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -9.006    -6.770 r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.837    -4.932    design_1_i/clk_wiz_0/inst/clk_out1_design_1_clk_wiz_0_0
+    BUFGCTRL_X0Y0                                                     r  design_1_i/clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -4.836 r  design_1_i/clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=64, routed)          1.847    -2.989    design_1_i/hbTest_0/U0/clk
+    SLICE_X0Y112         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y112         FDRE (Prop_fdre_C_Q)         0.456    -2.533 r  design_1_i/hbTest_0/U0/q_reg[2]/Q
+                         net (fo=2, routed)           0.666    -1.867    design_1_i/hbTest_0/U0/q[2]
+    SLICE_X0Y112                                                      r  design_1_i/hbTest_0/U0/__1_carry_i_1/I0
+    SLICE_X0Y112         LUT4 (Prop_lut4_I0_O)        0.154    -1.713 r  design_1_i/hbTest_0/U0/__1_carry_i_1/O
+                         net (fo=2, routed)           0.625    -1.087    design_1_i/hbTest_0/U0/__1_carry_i_1_n_0
+    SLICE_X0Y112                                                      r  design_1_i/hbTest_0/U0/__1_carry_i_4/I4
+    SLICE_X0Y112         LUT5 (Prop_lut5_I4_O)        0.327    -0.760 r  design_1_i/hbTest_0/U0/__1_carry_i_4/O
+                         net (fo=1, routed)           0.000    -0.760    design_1_i/hbTest_0/U0/__1_carry_i_4_n_0
+    SLICE_X0Y112                                                      r  design_1_i/hbTest_0/U0/__1_carry/S[3]
+    SLICE_X0Y112         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    -0.359 r  design_1_i/hbTest_0/U0/__1_carry/CO[3]
+                         net (fo=1, routed)           0.000    -0.359    design_1_i/hbTest_0/U0/__1_carry_n_0
+    SLICE_X0Y113                                                      r  design_1_i/hbTest_0/U0/__1_carry__0/CI
+    SLICE_X0Y113         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    -0.245 r  design_1_i/hbTest_0/U0/__1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    -0.245    design_1_i/hbTest_0/U0/__1_carry__0_n_0
+    SLICE_X0Y114                                                      r  design_1_i/hbTest_0/U0/__1_carry__1/CI
+    SLICE_X0Y114         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    -0.131 r  design_1_i/hbTest_0/U0/__1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    -0.131    design_1_i/hbTest_0/U0/__1_carry__1_n_0
+    SLICE_X0Y115                                                      r  design_1_i/hbTest_0/U0/__1_carry__2/CI
+    SLICE_X0Y115         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    -0.017 r  design_1_i/hbTest_0/U0/__1_carry__2/CO[3]
+                         net (fo=1, routed)           0.000    -0.017    design_1_i/hbTest_0/U0/__1_carry__2_n_0
+    SLICE_X0Y116                                                      r  design_1_i/hbTest_0/U0/__1_carry__3/CI
+    SLICE_X0Y116         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.097 r  design_1_i/hbTest_0/U0/__1_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     0.097    design_1_i/hbTest_0/U0/__1_carry__3_n_0
+    SLICE_X0Y117                                                      r  design_1_i/hbTest_0/U0/__1_carry__4/CI
+    SLICE_X0Y117         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.211 r  design_1_i/hbTest_0/U0/__1_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     0.211    design_1_i/hbTest_0/U0/__1_carry__4_n_0
+    SLICE_X0Y118                                                      r  design_1_i/hbTest_0/U0/__1_carry__5/CI
+    SLICE_X0Y118         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.325 r  design_1_i/hbTest_0/U0/__1_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     0.325    design_1_i/hbTest_0/U0/__1_carry__5_n_0
+    SLICE_X0Y119                                                      r  design_1_i/hbTest_0/U0/__1_carry__6/CI
+    SLICE_X0Y119         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.439 r  design_1_i/hbTest_0/U0/__1_carry__6/CO[3]
+                         net (fo=1, routed)           0.000     0.439    design_1_i/hbTest_0/U0/__1_carry__6_n_0
+    SLICE_X0Y120                                                      r  design_1_i/hbTest_0/U0/__1_carry__7/CI
+    SLICE_X0Y120         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.553 r  design_1_i/hbTest_0/U0/__1_carry__7/CO[3]
+                         net (fo=1, routed)           0.000     0.553    design_1_i/hbTest_0/U0/__1_carry__7_n_0
+    SLICE_X0Y121                                                      r  design_1_i/hbTest_0/U0/__1_carry__8/CI
+    SLICE_X0Y121         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.667 r  design_1_i/hbTest_0/U0/__1_carry__8/CO[3]
+                         net (fo=1, routed)           0.000     0.667    design_1_i/hbTest_0/U0/__1_carry__8_n_0
+    SLICE_X0Y122                                                      r  design_1_i/hbTest_0/U0/__1_carry__9/CI
+    SLICE_X0Y122         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.781 r  design_1_i/hbTest_0/U0/__1_carry__9/CO[3]
+                         net (fo=1, routed)           0.000     0.781    design_1_i/hbTest_0/U0/__1_carry__9_n_0
+    SLICE_X0Y123                                                      r  design_1_i/hbTest_0/U0/__1_carry__10/CI
+    SLICE_X0Y123         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.895 r  design_1_i/hbTest_0/U0/__1_carry__10/CO[3]
+                         net (fo=1, routed)           0.000     0.895    design_1_i/hbTest_0/U0/__1_carry__10_n_0
+    SLICE_X0Y124                                                      r  design_1_i/hbTest_0/U0/__1_carry__11/CI
+    SLICE_X0Y124         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.009 r  design_1_i/hbTest_0/U0/__1_carry__11/CO[3]
+                         net (fo=1, routed)           0.009     1.018    design_1_i/hbTest_0/U0/__1_carry__11_n_0
+    SLICE_X0Y125                                                      r  design_1_i/hbTest_0/U0/__1_carry__12/CI
+    SLICE_X0Y125         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.132 r  design_1_i/hbTest_0/U0/__1_carry__12/CO[3]
+                         net (fo=1, routed)           0.000     1.132    design_1_i/hbTest_0/U0/__1_carry__12_n_0
+    SLICE_X0Y126                                                      r  design_1_i/hbTest_0/U0/__1_carry__13/CI
+    SLICE_X0Y126         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.246 r  design_1_i/hbTest_0/U0/__1_carry__13/CO[3]
+                         net (fo=1, routed)           0.000     1.246    design_1_i/hbTest_0/U0/__1_carry__13_n_0
+    SLICE_X0Y127                                                      r  design_1_i/hbTest_0/U0/__1_carry__14/CI
+    SLICE_X0Y127         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     1.580 r  design_1_i/hbTest_0/U0/__1_carry__14/O[1]
+                         net (fo=1, routed)           0.000     1.580    design_1_i/hbTest_0/U0/__1_carry__14_n_6
+    SLICE_X0Y127         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[61]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_design_1_clk_wiz_0_0_1 rise edge)
+                                                      4.762     4.762 r  
+    U20                                               0.000     4.762 r  clk_0 (IN)
+                         net (fo=0)                   0.000     4.762    design_1_i/clk_wiz_0/inst/clk_in1
+    U20                                                               r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/I
+    U20                  IBUF (Prop_ibuf_I_O)         0.849     5.611 r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181     6.792    design_1_i/clk_wiz_0/inst/clk_in1_design_1_clk_wiz_0_0
+    PLLE2_ADV_X0Y2                                                    r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.262    -1.469 r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.755     0.286    design_1_i/clk_wiz_0/inst/clk_out1_design_1_clk_wiz_0_0
+    BUFGCTRL_X0Y0                                                     r  design_1_i/clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     0.377 r  design_1_i/clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=64, routed)          1.718     2.095    design_1_i/hbTest_0/U0/clk
+    SLICE_X0Y127         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[61]/C
+                         clock pessimism             -0.371     1.724    
+                         clock uncertainty           -0.133     1.591    
+    SLICE_X0Y127         FDRE (Setup_fdre_C_D)        0.062     1.653    design_1_i/hbTest_0/U0/q_reg[61]
+  -------------------------------------------------------------------
+                         required time                          1.653    
+                         arrival time                          -1.580    
+  -------------------------------------------------------------------
+                         slack                                  0.073    
+
+Slack (MET) :             0.908ns  (arrival time - required time)
+  Source:                 design_1_i/hbTest_0/U0/q_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_design_1_clk_wiz_0_0_1  {rise@0.000ns fall@2.381ns period=4.762ns})
+  Destination:            design_1_i/hbTest_0/U0/q_reg[61]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_design_1_clk_wiz_0_0  {rise@0.000ns fall@2.381ns period=4.762ns})
+  Path Group:             clk_out1_design_1_clk_wiz_0_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_design_1_clk_wiz_0_0 rise@0.000ns - clk_out1_design_1_clk_wiz_0_0_1 rise@0.000ns)
+  Data Path Delay:        1.176ns  (logic 0.937ns (79.653%)  route 0.239ns (20.347%))
+  Logic Levels:           17  (CARRY4=16 LUT5=1)
+  Clock Path Skew:        0.030ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.414ns
+    Source Clock Delay      (SCD):    -0.634ns
+    Clock Pessimism Removal (CPR):    0.190ns
+  Clock Uncertainty:      0.133ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.257ns
+    Phase Error              (PE):    0.000ns
+  Clock Domain Crossing:  Inter clock paths are considered valid unless explicitly excluded by timing constraints such as set_clock_groups or set_false_path.
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_design_1_clk_wiz_0_0_1 rise edge)
+                                                      0.000     0.000 r  
+    U20                                               0.000     0.000 r  clk_0 (IN)
+                         net (fo=0)                   0.000     0.000    design_1_i/clk_wiz_0/inst/clk_in1
+    U20                                                               r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/I
+    U20                  IBUF (Prop_ibuf_I_O)         0.212     0.212 r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.652    design_1_i/clk_wiz_0/inst/clk_in1_design_1_clk_wiz_0_0
+    PLLE2_ADV_X0Y2                                                    r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.523    -1.872 r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.560    -1.312    design_1_i/clk_wiz_0/inst/clk_out1_design_1_clk_wiz_0_0
+    BUFGCTRL_X0Y0                                                     r  design_1_i/clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.286 r  design_1_i/clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=64, routed)          0.652    -0.634    design_1_i/hbTest_0/U0/clk
+    SLICE_X0Y112         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y112         FDRE (Prop_fdre_C_Q)         0.141    -0.493 r  design_1_i/hbTest_0/U0/q_reg[2]/Q
+                         net (fo=2, routed)           0.230    -0.263    design_1_i/hbTest_0/U0/q[2]
+    SLICE_X0Y112                                                      r  design_1_i/hbTest_0/U0/__1_carry_i_5/I0
+    SLICE_X0Y112         LUT5 (Prop_lut5_I0_O)        0.045    -0.218 r  design_1_i/hbTest_0/U0/__1_carry_i_5/O
+                         net (fo=1, routed)           0.000    -0.218    design_1_i/hbTest_0/U0/__1_carry_i_5_n_0
+    SLICE_X0Y112                                                      r  design_1_i/hbTest_0/U0/__1_carry/S[2]
+    SLICE_X0Y112         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.115    -0.103 r  design_1_i/hbTest_0/U0/__1_carry/CO[3]
+                         net (fo=1, routed)           0.000    -0.103    design_1_i/hbTest_0/U0/__1_carry_n_0
+    SLICE_X0Y113                                                      r  design_1_i/hbTest_0/U0/__1_carry__0/CI
+    SLICE_X0Y113         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039    -0.064 r  design_1_i/hbTest_0/U0/__1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    -0.064    design_1_i/hbTest_0/U0/__1_carry__0_n_0
+    SLICE_X0Y114                                                      r  design_1_i/hbTest_0/U0/__1_carry__1/CI
+    SLICE_X0Y114         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039    -0.025 r  design_1_i/hbTest_0/U0/__1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    -0.025    design_1_i/hbTest_0/U0/__1_carry__1_n_0
+    SLICE_X0Y115                                                      r  design_1_i/hbTest_0/U0/__1_carry__2/CI
+    SLICE_X0Y115         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.014 r  design_1_i/hbTest_0/U0/__1_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     0.014    design_1_i/hbTest_0/U0/__1_carry__2_n_0
+    SLICE_X0Y116                                                      r  design_1_i/hbTest_0/U0/__1_carry__3/CI
+    SLICE_X0Y116         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.053 r  design_1_i/hbTest_0/U0/__1_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     0.053    design_1_i/hbTest_0/U0/__1_carry__3_n_0
+    SLICE_X0Y117                                                      r  design_1_i/hbTest_0/U0/__1_carry__4/CI
+    SLICE_X0Y117         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.092 r  design_1_i/hbTest_0/U0/__1_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     0.092    design_1_i/hbTest_0/U0/__1_carry__4_n_0
+    SLICE_X0Y118                                                      r  design_1_i/hbTest_0/U0/__1_carry__5/CI
+    SLICE_X0Y118         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.131 r  design_1_i/hbTest_0/U0/__1_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     0.131    design_1_i/hbTest_0/U0/__1_carry__5_n_0
+    SLICE_X0Y119                                                      r  design_1_i/hbTest_0/U0/__1_carry__6/CI
+    SLICE_X0Y119         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.170 r  design_1_i/hbTest_0/U0/__1_carry__6/CO[3]
+                         net (fo=1, routed)           0.000     0.170    design_1_i/hbTest_0/U0/__1_carry__6_n_0
+    SLICE_X0Y120                                                      r  design_1_i/hbTest_0/U0/__1_carry__7/CI
+    SLICE_X0Y120         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.209 r  design_1_i/hbTest_0/U0/__1_carry__7/CO[3]
+                         net (fo=1, routed)           0.000     0.209    design_1_i/hbTest_0/U0/__1_carry__7_n_0
+    SLICE_X0Y121                                                      r  design_1_i/hbTest_0/U0/__1_carry__8/CI
+    SLICE_X0Y121         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.248 r  design_1_i/hbTest_0/U0/__1_carry__8/CO[3]
+                         net (fo=1, routed)           0.000     0.248    design_1_i/hbTest_0/U0/__1_carry__8_n_0
+    SLICE_X0Y122                                                      r  design_1_i/hbTest_0/U0/__1_carry__9/CI
+    SLICE_X0Y122         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.287 r  design_1_i/hbTest_0/U0/__1_carry__9/CO[3]
+                         net (fo=1, routed)           0.000     0.287    design_1_i/hbTest_0/U0/__1_carry__9_n_0
+    SLICE_X0Y123                                                      r  design_1_i/hbTest_0/U0/__1_carry__10/CI
+    SLICE_X0Y123         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.326 r  design_1_i/hbTest_0/U0/__1_carry__10/CO[3]
+                         net (fo=1, routed)           0.000     0.326    design_1_i/hbTest_0/U0/__1_carry__10_n_0
+    SLICE_X0Y124                                                      r  design_1_i/hbTest_0/U0/__1_carry__11/CI
+    SLICE_X0Y124         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.365 r  design_1_i/hbTest_0/U0/__1_carry__11/CO[3]
+                         net (fo=1, routed)           0.009     0.374    design_1_i/hbTest_0/U0/__1_carry__11_n_0
+    SLICE_X0Y125                                                      r  design_1_i/hbTest_0/U0/__1_carry__12/CI
+    SLICE_X0Y125         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.413 r  design_1_i/hbTest_0/U0/__1_carry__12/CO[3]
+                         net (fo=1, routed)           0.000     0.413    design_1_i/hbTest_0/U0/__1_carry__12_n_0
+    SLICE_X0Y126                                                      r  design_1_i/hbTest_0/U0/__1_carry__13/CI
+    SLICE_X0Y126         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.452 r  design_1_i/hbTest_0/U0/__1_carry__13/CO[3]
+                         net (fo=1, routed)           0.000     0.452    design_1_i/hbTest_0/U0/__1_carry__13_n_0
+    SLICE_X0Y127                                                      r  design_1_i/hbTest_0/U0/__1_carry__14/CI
+    SLICE_X0Y127         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.090     0.542 r  design_1_i/hbTest_0/U0/__1_carry__14/O[1]
+                         net (fo=1, routed)           0.000     0.542    design_1_i/hbTest_0/U0/__1_carry__14_n_6
+    SLICE_X0Y127         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[61]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_design_1_clk_wiz_0_0 rise edge)
+                                                      0.000     0.000 r  
+    U20                                               0.000     0.000 r  clk_0 (IN)
+                         net (fo=0)                   0.000     0.000    design_1_i/clk_wiz_0/inst/clk_in1
+    U20                                                               r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/I
+    U20                  IBUF (Prop_ibuf_I_O)         0.401     0.401 r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.882    design_1_i/clk_wiz_0/inst/clk_in1_design_1_clk_wiz_0_0
+    PLLE2_ADV_X0Y2                                                    r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.851    -1.969 r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.611    -1.359    design_1_i/clk_wiz_0/inst/clk_out1_design_1_clk_wiz_0_0
+    BUFGCTRL_X0Y0                                                     r  design_1_i/clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.330 r  design_1_i/clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=64, routed)          0.916    -0.414    design_1_i/hbTest_0/U0/clk
+    SLICE_X0Y127         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[61]/C
+                         clock pessimism             -0.190    -0.604    
+                         clock uncertainty            0.133    -0.471    
+    SLICE_X0Y127         FDRE (Hold_fdre_C_D)         0.105    -0.366    design_1_i/hbTest_0/U0/q_reg[61]
+  -------------------------------------------------------------------
+                         required time                          0.366    
+                         arrival time                           0.542    
+  -------------------------------------------------------------------
+                         slack                                  0.908    
+
+Slack (MET) :             0.908ns  (arrival time - required time)
+  Source:                 design_1_i/hbTest_0/U0/q_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_design_1_clk_wiz_0_0  {rise@0.000ns fall@2.381ns period=4.762ns})
+  Destination:            design_1_i/hbTest_0/U0/q_reg[61]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out1_design_1_clk_wiz_0_0_1  {rise@0.000ns fall@2.381ns period=4.762ns})
+  Path Group:             clk_out1_design_1_clk_wiz_0_0_1
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_out1_design_1_clk_wiz_0_0_1 rise@0.000ns - clk_out1_design_1_clk_wiz_0_0 rise@0.000ns)
+  Data Path Delay:        1.176ns  (logic 0.937ns (79.653%)  route 0.239ns (20.347%))
+  Logic Levels:           17  (CARRY4=16 LUT5=1)
+  Clock Path Skew:        0.030ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.414ns
+    Source Clock Delay      (SCD):    -0.634ns
+    Clock Pessimism Removal (CPR):    0.190ns
+  Clock Uncertainty:      0.133ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.257ns
+    Phase Error              (PE):    0.000ns
+  Clock Domain Crossing:  Inter clock paths are considered valid unless explicitly excluded by timing constraints such as set_clock_groups or set_false_path.
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_design_1_clk_wiz_0_0 rise edge)
+                                                      0.000     0.000 r  
+    U20                                               0.000     0.000 r  clk_0 (IN)
+                         net (fo=0)                   0.000     0.000    design_1_i/clk_wiz_0/inst/clk_in1
+    U20                                                               r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/I
+    U20                  IBUF (Prop_ibuf_I_O)         0.212     0.212 r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.652    design_1_i/clk_wiz_0/inst/clk_in1_design_1_clk_wiz_0_0
+    PLLE2_ADV_X0Y2                                                    r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.523    -1.872 r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.560    -1.312    design_1_i/clk_wiz_0/inst/clk_out1_design_1_clk_wiz_0_0
+    BUFGCTRL_X0Y0                                                     r  design_1_i/clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.286 r  design_1_i/clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=64, routed)          0.652    -0.634    design_1_i/hbTest_0/U0/clk
+    SLICE_X0Y112         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y112         FDRE (Prop_fdre_C_Q)         0.141    -0.493 r  design_1_i/hbTest_0/U0/q_reg[2]/Q
+                         net (fo=2, routed)           0.230    -0.263    design_1_i/hbTest_0/U0/q[2]
+    SLICE_X0Y112                                                      r  design_1_i/hbTest_0/U0/__1_carry_i_5/I0
+    SLICE_X0Y112         LUT5 (Prop_lut5_I0_O)        0.045    -0.218 r  design_1_i/hbTest_0/U0/__1_carry_i_5/O
+                         net (fo=1, routed)           0.000    -0.218    design_1_i/hbTest_0/U0/__1_carry_i_5_n_0
+    SLICE_X0Y112                                                      r  design_1_i/hbTest_0/U0/__1_carry/S[2]
+    SLICE_X0Y112         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.115    -0.103 r  design_1_i/hbTest_0/U0/__1_carry/CO[3]
+                         net (fo=1, routed)           0.000    -0.103    design_1_i/hbTest_0/U0/__1_carry_n_0
+    SLICE_X0Y113                                                      r  design_1_i/hbTest_0/U0/__1_carry__0/CI
+    SLICE_X0Y113         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039    -0.064 r  design_1_i/hbTest_0/U0/__1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    -0.064    design_1_i/hbTest_0/U0/__1_carry__0_n_0
+    SLICE_X0Y114                                                      r  design_1_i/hbTest_0/U0/__1_carry__1/CI
+    SLICE_X0Y114         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039    -0.025 r  design_1_i/hbTest_0/U0/__1_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    -0.025    design_1_i/hbTest_0/U0/__1_carry__1_n_0
+    SLICE_X0Y115                                                      r  design_1_i/hbTest_0/U0/__1_carry__2/CI
+    SLICE_X0Y115         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.014 r  design_1_i/hbTest_0/U0/__1_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     0.014    design_1_i/hbTest_0/U0/__1_carry__2_n_0
+    SLICE_X0Y116                                                      r  design_1_i/hbTest_0/U0/__1_carry__3/CI
+    SLICE_X0Y116         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.053 r  design_1_i/hbTest_0/U0/__1_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     0.053    design_1_i/hbTest_0/U0/__1_carry__3_n_0
+    SLICE_X0Y117                                                      r  design_1_i/hbTest_0/U0/__1_carry__4/CI
+    SLICE_X0Y117         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.092 r  design_1_i/hbTest_0/U0/__1_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     0.092    design_1_i/hbTest_0/U0/__1_carry__4_n_0
+    SLICE_X0Y118                                                      r  design_1_i/hbTest_0/U0/__1_carry__5/CI
+    SLICE_X0Y118         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.131 r  design_1_i/hbTest_0/U0/__1_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     0.131    design_1_i/hbTest_0/U0/__1_carry__5_n_0
+    SLICE_X0Y119                                                      r  design_1_i/hbTest_0/U0/__1_carry__6/CI
+    SLICE_X0Y119         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.170 r  design_1_i/hbTest_0/U0/__1_carry__6/CO[3]
+                         net (fo=1, routed)           0.000     0.170    design_1_i/hbTest_0/U0/__1_carry__6_n_0
+    SLICE_X0Y120                                                      r  design_1_i/hbTest_0/U0/__1_carry__7/CI
+    SLICE_X0Y120         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.209 r  design_1_i/hbTest_0/U0/__1_carry__7/CO[3]
+                         net (fo=1, routed)           0.000     0.209    design_1_i/hbTest_0/U0/__1_carry__7_n_0
+    SLICE_X0Y121                                                      r  design_1_i/hbTest_0/U0/__1_carry__8/CI
+    SLICE_X0Y121         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.248 r  design_1_i/hbTest_0/U0/__1_carry__8/CO[3]
+                         net (fo=1, routed)           0.000     0.248    design_1_i/hbTest_0/U0/__1_carry__8_n_0
+    SLICE_X0Y122                                                      r  design_1_i/hbTest_0/U0/__1_carry__9/CI
+    SLICE_X0Y122         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.287 r  design_1_i/hbTest_0/U0/__1_carry__9/CO[3]
+                         net (fo=1, routed)           0.000     0.287    design_1_i/hbTest_0/U0/__1_carry__9_n_0
+    SLICE_X0Y123                                                      r  design_1_i/hbTest_0/U0/__1_carry__10/CI
+    SLICE_X0Y123         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.326 r  design_1_i/hbTest_0/U0/__1_carry__10/CO[3]
+                         net (fo=1, routed)           0.000     0.326    design_1_i/hbTest_0/U0/__1_carry__10_n_0
+    SLICE_X0Y124                                                      r  design_1_i/hbTest_0/U0/__1_carry__11/CI
+    SLICE_X0Y124         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.365 r  design_1_i/hbTest_0/U0/__1_carry__11/CO[3]
+                         net (fo=1, routed)           0.009     0.374    design_1_i/hbTest_0/U0/__1_carry__11_n_0
+    SLICE_X0Y125                                                      r  design_1_i/hbTest_0/U0/__1_carry__12/CI
+    SLICE_X0Y125         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.413 r  design_1_i/hbTest_0/U0/__1_carry__12/CO[3]
+                         net (fo=1, routed)           0.000     0.413    design_1_i/hbTest_0/U0/__1_carry__12_n_0
+    SLICE_X0Y126                                                      r  design_1_i/hbTest_0/U0/__1_carry__13/CI
+    SLICE_X0Y126         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.039     0.452 r  design_1_i/hbTest_0/U0/__1_carry__13/CO[3]
+                         net (fo=1, routed)           0.000     0.452    design_1_i/hbTest_0/U0/__1_carry__13_n_0
+    SLICE_X0Y127                                                      r  design_1_i/hbTest_0/U0/__1_carry__14/CI
+    SLICE_X0Y127         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.090     0.542 r  design_1_i/hbTest_0/U0/__1_carry__14/O[1]
+                         net (fo=1, routed)           0.000     0.542    design_1_i/hbTest_0/U0/__1_carry__14_n_6
+    SLICE_X0Y127         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[61]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_design_1_clk_wiz_0_0_1 rise edge)
+                                                      0.000     0.000 r  
+    U20                                               0.000     0.000 r  clk_0 (IN)
+                         net (fo=0)                   0.000     0.000    design_1_i/clk_wiz_0/inst/clk_in1
+    U20                                                               r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/I
+    U20                  IBUF (Prop_ibuf_I_O)         0.401     0.401 r  design_1_i/clk_wiz_0/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.882    design_1_i/clk_wiz_0/inst/clk_in1_design_1_clk_wiz_0_0
+    PLLE2_ADV_X0Y2                                                    r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKIN1
+    PLLE2_ADV_X0Y2       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.851    -1.969 r  design_1_i/clk_wiz_0/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.611    -1.359    design_1_i/clk_wiz_0/inst/clk_out1_design_1_clk_wiz_0_0
+    BUFGCTRL_X0Y0                                                     r  design_1_i/clk_wiz_0/inst/clkout1_buf/I
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.330 r  design_1_i/clk_wiz_0/inst/clkout1_buf/O
+                         net (fo=64, routed)          0.916    -0.414    design_1_i/hbTest_0/U0/clk
+    SLICE_X0Y127         FDRE                                         r  design_1_i/hbTest_0/U0/q_reg[61]/C
+                         clock pessimism             -0.190    -0.604    
+                         clock uncertainty            0.133    -0.471    
+    SLICE_X0Y127         FDRE (Hold_fdre_C_D)         0.105    -0.366    design_1_i/hbTest_0/U0/q_reg[61]
+  -------------------------------------------------------------------
+                         required time                          0.366    
+                         arrival time                           0.542    
+  -------------------------------------------------------------------
+                         slack                                  0.908    
+
+
+
+
