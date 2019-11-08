@@ -47,11 +47,17 @@ Does the synthesized schematic make sense to you?
 
 A rough hand sketch of both the top level design and the inside of the counter block.
 
+![Counter Top](top_counter.png)
+
+![Counter Schematic](schematic_counter.png)
+
 Explain the resulting circuits.
 
 Do you understand why the synthesis tool did what it did and how it implmenets your circuit?
 
 Bring up timing report and find critical path and draw it on the sketch.
+
+![Counter Critical Path](crit_path_counter.png)
 
 ###Questions:
 
