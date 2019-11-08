@@ -18,28 +18,9 @@ Create a 16 bit wide counter with the defualt clock and review the timing report
 
 <details><summary>counter.v</summary><p> 
 <pre><code class="verilog">
-`timescale 1ns / 1ps
-module hbTest #(parameter OUTPUT_WIDTH = 16, parameter INCVAL_MULTIPLIER = 3)(input clk, input clr, input inc, input [7:0] incVal, input dec, input [7:0] decVal, output reg [OUTPUT_WIDTH - 1:0] q);
-    always @(posedge clk)
-    begin
-        if(clr == 1'b1)
-        begin
-            q &lt;= 0;
-        end
-        else if(inc == 1'b1)
-        begin
-            q &lt;= q + {{8{incVal[7]}}, incVal[7:0]} * INCVAL_MULTIPLIER;
-        end
-        else if(dec == 1'b1)
-        begin
-            q &lt;= q - {{8{decVal[7]}}, decVal[7:0]};
-        end
-        else
-        begin
-            q &lt;= q;
-        end
-    end
-endmodule
+
+insert counter code here
+
 </code></pre></p></details>
 
 ###Steps:
@@ -57,8 +38,8 @@ Bring up timing report and find critical path and draw it on the sketch.
 
 Q:What is its slack and what does that mean?
 
-A:Slack is the amount of extra time the Data path has before violating tSetup. A postive slack means you can go faster. A zero slack means you are going the fastest possible.
-A Negative Slack mean your design does not meet timing and violates tSetup.
+A:The slack is 6.428. Slack is the amount of extra time the Data path has before violating tSetup. A postive slack means you can go faster. A zero slack means you are going the fastest possible.
+A Negative Slack mean your design does not meet timing and violates tSetup. So we could reduce the clock period by 6.428ns and still meet timing.
 
 What is the launch edge (beginning) of the path?
 
