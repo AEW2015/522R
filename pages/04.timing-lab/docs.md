@@ -203,7 +203,7 @@ How much of the final critical path is Tclk-Q, Tlogic, Tsetup, Twiring, and Tske
 This project demonstrates that we can use and understand the timing reports of the Vivado tools.
 This should in future projects to improve the our design results.
 
-![Final Critical Path Report](https://github.com/AEW2015/522R/blob/master/pages/04.timing-lab/test.rpt)
+[Final Critical Path Report](https://github.com/AEW2015/522R/blob/master/pages/04.timing-lab/test.rpt)
 
 (a) did you do everything requested? 
 
