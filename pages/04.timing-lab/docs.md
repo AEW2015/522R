@@ -26,7 +26,7 @@ insert counter code here
 ###Steps:
 Does the synthesized schematic make sense to you?
 
-A rough hand sketch of both the top level design and the inside of the counter block.
+A diagram of both the top level design and the inside of the counter block.
 
 ![Counter Top](block_diagram_counter.png)
 
@@ -36,7 +36,7 @@ Explain the resulting circuits.
 
 Do you understand why the synthesis tool did what it did and how it implmenets your circuit?
 
-Bring up timing report and find critical path and draw it on the sketch.
+Bring up timing report and find critical path and draw it on the diagram.
 
 ![Counter Critical Path](crit_path_counter.png)
 
