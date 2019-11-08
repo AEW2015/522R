@@ -8,11 +8,14 @@ visible: true
 
 #Timing Lab
 
+##Andy and Jennings
+
 ##Part 1
 
 ###Summary
 
 Create a 16 bit wide counter with the defualt clock and review the timing report.
+Find the critical path and examine the parts of the path.
 
 ###Code
 
@@ -118,7 +121,8 @@ A:Yes.
 
 ###Summary
 
-Change the counter to be 64 bits wide and rerun
+Change the counter to be 64 bits wide and rerun.
+Find the max bit size for the given clock frequency.
 
 ###Questions
 
@@ -196,6 +200,13 @@ How much of the final critical path is Tclk-Q, Tlogic, Tsetup, Twiring, and Tske
 
 ##Final Summary
 
+This project demonstrates that we can use and understand the timing reports of the Vivado tools.
+This should in future projects to improve the our design results.
+
 (a) did you do everything requested? 
 
+yes
+
 (b) does your writeup evidence that you have figured out the basics of the timing report, the use of PLL's in this scenario, and the use of clock/input/output constraints?
+
+yes
