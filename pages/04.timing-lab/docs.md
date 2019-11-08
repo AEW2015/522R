@@ -183,10 +183,15 @@ A:We found that the max frequency we could run was 210 MHz with an input delay o
 How much of the final critical path is Tclk-Q, Tlogic, Tsetup, Twiring, and Tskew? 
 
 A:	Tclk-Q:0.456ns
+
 	Tlogic:3.268ns (71.5% of critical path)
+	
 	Twiring:1.301ns (28.5% of critical path)
+	
 	Tskew:-0.049ns 
+	
 	Tsetup:0.062ns
+	
 	Total Critical Path:4.569ns
 
 ##Final Summary
