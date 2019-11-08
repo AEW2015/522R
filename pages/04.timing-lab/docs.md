@@ -18,21 +18,45 @@ Create a 16 bit wide counter with the defualt clock and review the timing report
 
 <details><summary>counter.v</summary><p> 
 <pre><code class="verilog">
-
-insert counter code here
-
+`timescale 1ns / 1ps
+module hbTest #(parameter OUTPUT_WIDTH = 16, parameter INCVAL_MULTIPLIER = 3)(input clk, input clr, input inc, input [7:0] incVal, input dec, input [7:0] decVal, output reg [OUTPUT_WIDTH - 1:0] q);
+    always @(posedge clk)
+    begin
+        if(clr == 1'b1)
+        begin
+            q &lt;= 0;
+        end
+        else if(inc == 1'b1)
+        begin
+            q &lt;= q + {{8{incVal[7]}}, incVal[7:0]} * INCVAL_MULTIPLIER;
+        end
+        else if(dec == 1'b1)
+        begin
+            q &lt;= q - {{8{decVal[7]}}, decVal[7:0]};
+        end
+        else
+        begin
+            q &lt;= q;
+        end
+    end
+endmodule
 </code></pre></p></details>
 
 ###Steps:
-Does the synthesized schematic make sense to you?
 
-A rough hand sketch of both the top level design and the inside of the counter block.
+A diagram of both the top level design and the inside of the counter block.
+
+![Counter Top](block_diagram_counter.png)
+
+![Counter Schematic](schematic_counter.png)
 
 Explain the resulting circuits.
 
 Do you understand why the synthesis tool did what it did and how it implmenets your circuit?
 
-Bring up timing report and find critical path and draw it on the sketch.
+Bring up timing report and find critical path and draw it on the diagram.
+
+![Counter Critical Path](crit_path_counter.png)
 
 ###Questions:
 
@@ -108,11 +132,17 @@ Set an input delay for the LSB of the incVal and an output delay for the MSB of 
 ###Questions:
 
 Range of Input/Output Delays that work:
-Input: 1.5ns Output: 0ns
-Input: 0ns Output: 7.97ns
-Input: 0.5ns Output: 7.95ns
-Input: 1.5ns Output: 6.25ns
-Input: 0.25ns Output: 7.97ns
+
+Input: 1.5ns Output: 0ns; This is the max input delay with output set to 0.
+
+
+Input: 0ns Output: 7.97ns; This is the max output delay with input set to 0.
+
+Input: 1.5ns Output: 6.25ns; This is the max output delay with the input set to 1.5ns (max).
+
+Input: 0.25ns Output: 7.97ns This is the max input delay with the output set to 7.97ns (max).
+
+Input: 0.5ns Output: 7.95ns; This is an example of an input in range that meets timing.
 
 
 
