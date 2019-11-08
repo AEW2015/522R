@@ -28,17 +28,11 @@ Does the synthesized schematic make sense to you?
 
 A rough hand sketch of both the top level design and the inside of the counter block.
 
-![Counter Top](block_diagram_counter.png)
-
-![Counter Schematic](schematic_counter.png)
-
 Explain the resulting circuits.
 
 Do you understand why the synthesis tool did what it did and how it implmenets your circuit?
 
 Bring up timing report and find critical path and draw it on the sketch.
-
-![Counter Critical Path](crit_path_counter.png)
 
 ###Questions:
 
@@ -47,17 +41,28 @@ Q:What is its slack and what does that mean?
 A:The slack is 6.428. Slack is the amount of extra time the Data path has before violating tSetup. A postive slack means you can go faster. A zero slack means you are going the fastest possible.
 A Negative Slack mean your design does not meet timing and violates tSetup. So we could reduce the clock period by 6.428ns and still meet timing.
 
-What is the launch edge (beginning) of the path?
+What is the launch edge (beginning) of the path? 
 
-When does the clock edge that launches the signal arrive at the launch flip flop?
+A:FDRE(q_reg[2])
 
-What is the capture point (end) of the path? When does the clock arrive there? Does this make sense knowing what you know about the path from the input pin to the flip flops?
+When does the clock edge that launches the signal arrive at the launch flip flop? 
+A:The clock arrives at 2.140ns.
 
-When is the signal required to be at the endpoint?
+What is the capture point (end) of the path? When does the clock arrive there? Does this make sense knowing what you know about the path from the input pin to the flip flops? 
+
+A:The capture point is FDRE(q_reg[13]). The clock arrives there at 5.530ns. 
+
+When is the signal required to be at the endpoint? 
+
+A:At 11.958ns.
 
 If you do the arithmetic, how do the various numbers work out? Do the values above take into account clock skew or not?
 
+A:Subtracting the difference of the data arriving at the capture flip flop(5.530) from the required capture point flip flop(11.958) which gives us the slack of 6.428ns. Yes, it takes the clock skew into account in the required time to get to the capture flip flop.
+
 What are the various delays making up the critical path? Which ones dominate? Which ones are smaller than you might have anticipated? Any surprises here?
+
+A:The first flip flop's delay is 1.134ns, LUT4's delay is .965ns, LUT5's delay is .327ns, the first CARRY4's delay is .401ns, the second CARRY4's delay is .114ns, the third CARRY4's delay is .114ns, the last CARRY$'s delay is .334ns. The first flip flop and first LUT dominate, adding the largest delay. The CARRY4 delays were smaller than we thought they would be. We were surprised at the difference in delays between the two LUTs as well as the four CARRY4s.
 
 ##Part 2
 
