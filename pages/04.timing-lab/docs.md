@@ -28,7 +28,7 @@ Does the synthesized schematic make sense to you?
 
 A rough hand sketch of both the top level design and the inside of the counter block.
 
-![Counter Top](top_counter.png)
+![Counter Top](block_diagram_counter.png)
 
 ![Counter Schematic](schematic_counter.png)
 
