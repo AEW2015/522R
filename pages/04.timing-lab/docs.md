@@ -18,9 +18,28 @@ Create a 16 bit wide counter with the defualt clock and review the timing report
 
 <details><summary>counter.v</summary><p> 
 <pre><code class="verilog">
-
-insert counter code here
-
+`timescale 1ns / 1ps
+module hbTest #(parameter OUTPUT_WIDTH = 16, parameter INCVAL_MULTIPLIER = 3)(input clk, input clr, input inc, input [7:0] incVal, input dec, input [7:0] decVal, output reg [OUTPUT_WIDTH - 1:0] q);
+    always @(posedge clk)
+    begin
+        if(clr == 1'b1)
+        begin
+            q &lt;= 0;
+        end
+        else if(inc == 1'b1)
+        begin
+            q &lt;= q + {{8{incVal[7]}}, incVal[7:0]} * INCVAL_MULTIPLIER;
+        end
+        else if(dec == 1'b1)
+        begin
+            q &lt;= q - {{8{decVal[7]}}, decVal[7:0]};
+        end
+        else
+        begin
+            q &lt;= q;
+        end
+    end
+endmodule
 </code></pre></p></details>
 
 ###Steps:
