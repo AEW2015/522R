@@ -36,7 +36,10 @@ Bring up timing report and find critical path and draw it on the sketch.
 
 ###Questions:
 
-What is its slack and what does that mean?
+Q:What is its slack and what does that mean?
+
+A:Slack is the amount of extra time the Data path has before violating tSetup. A postive slack means you can go faster. A zero slack means you are going the fastest possible.
+A Negative Slack mean your design does not meet timing and violates tSetup.
 
 What is the launch edge (beginning) of the path?
 
@@ -68,7 +71,7 @@ Can you make sense of this based on the clock path?
 
 ###Summary
 
-Change the counter to be 16 bits wide and rerun
+Change the counter to be 64 bits wide and rerun
 
 ###Questions
 
@@ -83,9 +86,13 @@ Set an input delay for the LSB of the incVal and an output delay for the MSB of 
 
 ###Questions:
 
-What is an input delay? 
+Q:What is an input delay? 
 
-What is an output delay? 
+A: This helps the tool understand the time between the edge of the input to the next flipflop.
+
+Q.What is an output delay? 
+
+A: This helps the tool understand the time between the last flipflop to the external output capture device.
 
 With these new assumptions, is your PLL set up correctly or do you see something you should do to it to make the whole board-level design work better? 
 
