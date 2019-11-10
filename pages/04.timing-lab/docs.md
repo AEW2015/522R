@@ -168,9 +168,15 @@ A: This helps the tool understand the time between the last flipflop to the exte
 
 With these new assumptions, is your PLL set up correctly or do you see something you should do to it to make the whole board-level design work better? 
 
+The PLL is setup correctly.
+
 For example, would changing the phase of the PLL for your internal circuitry help in any way? 
 
+It would change how the input and output delay differ from the system clock edge.
+
 If you decide something should be done, you need not do it, but simply explain what you would do and why you would do it.
+
+We did nothing to the PLL.
 
 ##Part 5
 
