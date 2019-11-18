@@ -48,6 +48,6 @@ visible: true
 
 ####Waveform
 
-![sing ext](sing_ext.png)
+![sing ext](sing_ex.png)
 
 ##Conclusion
