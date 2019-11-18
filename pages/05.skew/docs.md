@@ -12,6 +12,8 @@ visible: true
 
 ###Block Diagram
 
+![block diagram](clks.png)
+
 ##Edge Triggered Clocking
 
 ###Min Delay
