@@ -99,7 +99,9 @@ Like before, this waveform shows additional time that can be used because of pos
 
 I feel I did not meet your expectations, but am confused at what else to add to this document.
 The equations are straigth forward and I don't understand the purpose in simulating the equations.
-I don't see a narrative in explaining this or how to do any exploration.
+They are always true. 
+I would have found it more eduation to do manually place and routing to see how these timing delays were affected.
+I don't see a narrative in explaining this or how to do any exploration in simulation.
 
 
 
