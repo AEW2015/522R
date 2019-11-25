@@ -6,8 +6,8 @@ taxonomy:
 visible: true
 ---
 
-![dg#1](DG#1.png)
-![dg#2](DG#2.png)
-![dg#3](DG#3.png)
-![dg#4](DG#4.png)
-![dg#5](DG#5.png)
+![dg#1](DG_1.png)
+![dg#2](DG_2.png)
+![dg#3](DG_3.png)
+![dg#4](DG_4.png)
+![dg#5](DG_5.png)
