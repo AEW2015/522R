@@ -21,7 +21,7 @@ Here is the VHDL for the PEs.
 The X was padded with two 2 in front and behind to create a 14.2 fixed point value.
 The final output of the FIR filter is 14.2 allowing for the best percision with a 16 bit outputs and no overflow.
 
-<details><summary>tx_tb.sv</summary>
+<details><summary>pe.vhd</summary>
 <p>
   
 <pre><code class="vhdl">
@@ -96,6 +96,6 @@ This reulst is an equation of (y = sum(a&lt;k&gt;*(x&lt;m-k&gt;+x&lt;k&gt;),k,0,
 # Problem 5
 
 This is problem 4 but when N is odd.
-This reulst is an equation of (y = a&lt;(N-1)/2&gt;*x&lt;(N-1)/2&gt;sum(a&lt;k&gt;*(x&lt;m-k&gt;+x&lt;k&gt;),k,0,N/2-1) when N is even.
+This reulst is an equation of (y = a&lt;(N-1)/2&gt;x&lt;(N-1)/2&gt;+sum(a&lt;k&gt;(x&lt;m-k&gt;+x&lt;k&gt;),k,0,N/2-1) when N is even.
 
 ![dg#5](DG_5.png)
