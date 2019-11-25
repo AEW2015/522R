@@ -6,8 +6,6 @@ taxonomy:
 visible: true
 ---
 
-# Homework 1
-
 ## Problem 1
 
 This DG and SFG show a possible projection and scheduling that allows for the incoming x value to be broadcasted to all the PEs.
