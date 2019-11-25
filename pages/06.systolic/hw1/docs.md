@@ -88,6 +88,7 @@ Though this design did not get the best slack, it can probably be scaled and kee
 
 With symmetrical coefﬁcients, you can fold the DG as shown in the image below.
 This reulst is an equation of (y = sum(a&lt;k&gt;*(x&lt;N-k&gt;+x&lt;k&gt;),k,0,N/2-1) when N is even.
+The X values are looped back to the PE after a few cycles.
 
 ![dg#4](DG_4.png)
 
@@ -95,5 +96,6 @@ This reulst is an equation of (y = sum(a&lt;k&gt;*(x&lt;N-k&gt;+x&lt;k&gt;),k,0,
 
 This is problem 4 but when N is odd.
 This reulst is an equation of (y = a&lt;(N-1)/2&gt;x&lt;(N-1)/2&gt;+sum(a&lt;k&gt;(x&lt;N-k&gt;+x&lt;k&gt;),k,0,N/2-1) when N is even.
+This is now a third PE that has a unique coefﬁcient.
 
 ![dg#5](DG_5.png)
