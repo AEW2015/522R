@@ -87,13 +87,13 @@ Though this design did not get the best slack, it can probably be scaled and kee
 # Problem 4
 
 With symmetrical coefﬁcients, you can fold the DG as shown in the image below.
-This reulst is an equation of (y = sum(a&lt;k&gt;*(x&lt;m-k&gt;+x&lt;k&gt;),k,0,N/2-1) when N is even.
+This reulst is an equation of (y = sum(a&lt;k&gt;*(x&lt;N-k&gt;+x&lt;k&gt;),k,0,N/2-1) when N is even.
 
 ![dg#4](DG_4.png)
 
 # Problem 5
 
 This is problem 4 but when N is odd.
-This reulst is an equation of (y = a&lt;(N-1)/2&gt;x&lt;(N-1)/2&gt;+sum(a&lt;k&gt;(x&lt;m-k&gt;+x&lt;k&gt;),k,0,N/2-1) when N is even.
+This reulst is an equation of (y = a&lt;(N-1)/2&gt;x&lt;(N-1)/2&gt;+sum(a&lt;k&gt;(x&lt;N-k&gt;+x&lt;k&gt;),k,0,N/2-1) when N is even.
 
 ![dg#5](DG_5.png)
