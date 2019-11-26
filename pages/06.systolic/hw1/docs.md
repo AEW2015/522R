@@ -55,7 +55,7 @@ The simulation used a basic coefﬁcients so it was easy to read.
 Each coefﬁcient was .5
 Here is the waveform showing correct operation.
 
-![Waveform](p1.png)
+![Waveform](p1.PNG)
 
 The timing showed a slack of 2.300 ns with a period of 10 ns.
 Each input and output had to be regitered and the coefﬁcients were considered dynamic inputs so the tools would not optimize them.
