@@ -27,7 +27,7 @@ The Diagonal projection is better utilized with lower p values.
 
 ##Problem 5
 
-I took the the horizontal schedule from the previous homework becuase it doesn't care about the direction of the additions.
+I took the the vertical schedule from the previous homework becuase it doesn't care about the direction of the additions.
 I then retimed the SFG in the two different directions.
 Both have a latency of 8 cycles, but one requires the input to be spaced out from each other.
 
