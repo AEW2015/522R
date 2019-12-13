@@ -6,6 +6,8 @@ taxonomy:
 visible: true
 ---
 
+Andy and Corbin
+
 ##Part 1
 
 ###Chisel Bootcamp Summary
@@ -38,171 +40,31 @@ val mmap = Seq(
 | Name  | Peek % | Concept|
 | ----------- | ----------- |----------- |
 | Accumulator | 0%          | Reg variables and When() control logic|
-
-Adder
-
-0%
-
-Generator Width
-
-Counter
-
-5%
-
-Defs
-
-DynamicMemorySearch
-
-25%
-
-List
-
-LFSR16
-
-40%
-
-When Cat
-
-Max2
-
-10%
-
-Mux, peek, poke
-
-MaxN
-
-30%
-
-For reduceleft
-
-Memo
-
-0%
-
-When
-
-Mul
-
-25%
-
-Lookup table
-
-Mux4
-
-10%
-
-Module Usage
-
-RealGCD
-
-50%
-
-When
-
-SingleEvenFilter
-
-40%
-
-Pipe moduels
-
-VecShiftRegister
-
-40%
-
-Vec
-
-VecShiftRegisterSimple
-
-20%
-
-Vec
-
-VecShitRegisterParam
-
-30%
-
-Parameter For loop
-
-VendingMachine
-
-10%
-
-STM
-
-VendingMachineSwitch
-
-40%
-
-Switch statement Enum
-
-ByteSelector
-
-
-
-When, and bit selection
-
-EnableShiftRegister
-
-Draw
-
-elsewhen
-
-Functionality
-
-
-
-Def (method/function)
-
-HiLoMultiplier
-
-
-
-Bit selection/multiply
-
-LogShifter
-
-Draw
-
-Barrel shifter
-
-Parity
-
-
-
-State enum
-
-Stack
-
-Draw
-
-Memory and control logic
-
-Tbl
-
-Draw
-
-Lookup memory
-
-VecSearch
-
-
-
-Vec
-
-Router
-
-
-
-inheritance
-
-Risc
-
-Draw
-
-Decoding instructions
-
-Life
-
-Draw
-
-Class structureWhat is foldRight?
+| Adder       | 0%          | use a Generator for custom Widths     |
+| Counter     | 5%          | Use Def as functions in the code      |
+| DynamicMemorySearch | 25% | How to setup and use Lists            |
+| LFSR16      | 40%         | Another example of when control logic and how to cat signals together |
+| Max2        | 10%         | Mux function as well as expect and poke test functions|
+| MaxN        | 30%         | For loops and reduceleft function examples |
+| Memo        | 0%          | When control logic                    |
+| Mul         | 25%         | Lookup table generation and use       |
+| Mux4        | 10%         | Module Usage with a module            |
+| RealGCD     | 50%         | When control logic                    |
+| SingleEvenFilter | 40%    | Pipe modules together                 |
+| VecShiftRegister | 40%    | Vec class usage                       |
+| VecShiftRegisterSimple | 20% | Vec class usage                    |
+| VecShitRegisterParam | 30% | Parameter in modules and For loop    |
+| VendingMachine | 10%      | State Machine Example                 |
+| VendingMachineSwitch | 40% | Switch statement Enum variable       |
+| ByteSelector | -          | When, and bit selection               |
+| EnableShiftRegister | Draw | elsewhen conditional usage           |
+| Functionality | -         | Def (method/function) usage           |
+| HiLoMultiplier | -        | Bit selection/multiply                |
+| LogShifter  | Draw        | Barrel shifter mux logic              |
+| Parity      | -           | State enum variable usage             |
+| Stack       | Draw        | Memory and control logic              |
+| Tbl         | Draw        | Lookup memory                         |
+| VecSearch   | -           | Vec clase usage example               |
+| Router      | -           | Class inheritance                     |
+| Risc        | Draw        | Decoding instructions                 |
+| Life        | Draw        | Class structure and What is foldRight? (Scala function) |
