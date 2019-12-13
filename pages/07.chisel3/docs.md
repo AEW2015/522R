@@ -63,8 +63,19 @@ val mmap = Seq(
 | LogShifter  | Draw        | Barrel shifter mux logic              |
 | Parity      | -           | State enum variable usage             |
 | Stack       | Draw        | Memory and control logic              |
-| Tbl         | Draw        | Lookup memory                         |
+| Tlb         | Draw        | Lookup memory                         |
 | VecSearch   | -           | Vec clase usage example               |
 | Router      | -           | Class inheritance                     |
-| Risc        | Draw        | Decoding instructions                 |
+| RISC        | Draw        | Decoding instructions                 |
 | Life        | Draw        | Class structure and What is foldRight? (Scala function) |
+
+![EnableShiftRegister & LogShifter](EnableShiftRegister.jpeg)
+
+![Stack](stack.jpeg)
+
+![TLB](tlb.jpeg)
+
+![RISC](Risc.jpeg
+
+![LIFE](life.jpeg)
+![LIFE2](life2.jpeg)
