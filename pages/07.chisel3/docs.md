@@ -36,7 +36,8 @@ val mmap = Seq(
 
 
 | Name  | Peek % | Concept|
-| Accumulator | 0% | Reg variables and When() control logic|
+| ----------- | ----------- |----------- |
+| Accumulator | 0%          | Reg variables and When() control logic|
 
 Adder
 
